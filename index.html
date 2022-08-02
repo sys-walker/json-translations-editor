@@ -68,7 +68,6 @@
                 }
             }
             if( deleted){
-                //window.alert("Deleting "+column_name)      
                 add_languages_select()
             }
         }
@@ -88,7 +87,7 @@
             return {num_columns:num_columns, num_rows:num_rows}
             
         }
-        function add_row(){
+        function add_translation(){ 
 
             const { num_columns, num_rows}  = get_table_sizes()
             if(num_columns >2){
@@ -269,7 +268,7 @@
                 <button type="button"
                 onclick="add_new_language()" > Add Languages</button>
                 <button type="button"
-            onclick="add_row()" >
+            onclick="add_translation()" >
             Add translation</button>
             </div>
         </div>
