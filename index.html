@@ -261,29 +261,37 @@
 
     <div>
         <h3>Translation options</h3>
-        <div >
-            <label for="language-addition"><b>add new language:</b></label>
-            <div>
-                <input type="text" id="deletion-input" name="language-addition" value="">
-                <button type="button"
-                onclick="add_new_language()" > Add Languages</button>
-                <button type="button"
-            onclick="add_translation()" >
-            Add translation</button>
-            </div>
-        </div>
 
-        <div>
-                <label for="languages-availables"><b>Language to remove</b></label>
+        <div style="display:flex;gap: 10px;margin-bottom: 10px;">
+            <div >
+                <label for="language-addition"><b>add new language:</b></label>
                 <div>
-                    <select name="languages-availables" id="selectElementId">
-                    </select>
+                    <input type="text" id="deletion-input" name="language-addition" value="">
                     <button type="button"
-                    onclick="remove_by_language()" >
-                    Remove</button>
+                    onclick="add_new_language()" > Add Languages</button>
+                    <button type="button"
+                onclick="add_translation()" >
+                Add translation</button>
                 </div>
+            </div>
+    
+            <div>
+                    <label for="languages-availables"><b>Language to remove</b></label>
+                    <div>
+                        <select name="languages-availables" id="selectElementId">
+                        </select>
+                        <button type="button"
+                        onclick="remove_by_language()" >
+                        Remove</button>
+                    </div>
+            </div>
+           
         </div>
-        <div>
+        
+
+
+
+        <div style="margin-bottom: 10px;">
             <label for="language-download"><b>Dowload languages</b></label>
             <div>
                 <button id="download-button-json" name="language-download" type="button"
@@ -304,8 +312,8 @@
         <td></td>
     </tr>
     <tr>
-        <td><input  class='input-translation' type="text" id="fname" name="fname" value="hello_world"></td>
-        <td><input  class='input-translation' type="text" id=" " name=" " value="Hello World!"></td>        
+        <td><input  class='input-translation' type="text" id="" name="" value="hello_world"></td>
+        <td><input  class='input-translation' type="text" id="" name="" value="Hello World!"></td>        
         <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
     </tr>
     </table>
