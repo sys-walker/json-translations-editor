@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-0lax{text-align:left;vertical-align:top}
+
+    input.input-translation{
+        border: none;
+    }
+
+  
+   
+    </style>
+</head>
+<body  onload="add_languages_select()">
+    <script>
+        function deleteRow(r) {
+            var i = r.parentNode.parentNode.rowIndex;
+            document.getElementById("translation-table").deleteRow(i);
+        }
+        function delete_by_key(){
+            /*
+            <div >
+                <label for="fname">Translation key:</label>
+                <input type="text" id="deletion-input" name="fname" value="John">
+                <button type="button"
+                onclick="delete_by_key()" >
+                delete by key</button>
+            </div>
+
+            */
+            let translation_key = document.getElementById('deletion-input').value
+            var rows = document.getElementById('translation-table').rows;
+            var colum_table_key =rows[0].cells[0]
+            let index_to_delete = -1;
+            if(translation_key===""){
+                return
+            }
+            for (var j = 0; j < rows.length; j++) {
+                if(rows[j].cells[0].innerText===translation_key){
+                    index_to_delete = j
+                    break
+                }
+            }
+            if( index_to_delete !==-1){
+                document.getElementById("translation-table").deleteRow(index_to_delete);
+            }
+        }
+        function remove_by_language(){
+            let column_name = get_option_selected()
+            var rows = document.getElementById('translation-table').rows;
+            let deleted =false
+            if(column_name===""){
+                return
+            }
+            for (var i = 0; i < rows[0].cells.length; i++) {
+                if(rows[0].cells[i].innerText===column_name){
+                    for (var j = 0; j < rows.length; j++) {
+                        rows[j].deleteCell(i);
+                    }
+                    deleted =true
+                }
+            }
+            if( deleted){
+                //window.alert("Deleting "+column_name)      
+                add_languages_select()
+            }
+        }
+        function get_table_sizes(){
+            //count of rows of table
+            var rows = document.getElementById('translation-table').rows;
+
+            var single_colum =rows[0].cells[0];
+
+            var num_rows = 0;
+            for (var j = 0; j < rows.length; j++) {
+               num_rows+=1
+            }
+            //Count columns
+            var num_columns  = rows[0].cells.length
+
+            return {num_columns:num_columns, num_rows:num_rows}
+            
+        }
+        function add_row(){
+
+            const { num_columns, num_rows}  = get_table_sizes()
+            if(num_columns >2){
+                var table = document.getElementById('translation-table')
+                // Create an empty <tr> element and add it to the 1st position of the table:
+                var row = table.insertRow(num_rows);
+                // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+                for (var j = 0; j < num_columns; j++) {
+                    var cell = row.insertCell(j);
+                    if ( j === (num_columns-1)){
+                        cell.innerHTML = "<input type='button' value='Delete' onclick='deleteRow(this)'>";
+                    }else{
+                        cell.innerHTML = "<input class='input-translation' type='' id='' name='' value=''>";
+                    }
+                    
+                }
+            }
+
+            
+            
+        }
+        function add_new_language(){
+            let new_language=document.getElementById('deletion-input').value;
+            if(new_language===""){
+                return
+            }
+            var table = document.getElementById('translation-table'),
+                rows = table.rows
+            
+
+            const { num_columns, num_rows}  = get_table_sizes()
+            
+            let i=num_columns-1
+            for (var j = 0; j < rows.length; j++) {
+                if ( j ===0){
+                    let p = rows[j].insertCell(i);
+                    p.innerHTML=new_language
+                }else{
+                    let p = rows[j].insertCell(i);
+                    p.innerHTML="<input class='input-translation' type='text' id='' name='' value=''>"
+                }   
+            }
+            add_languages_select()
+        }
+        function get_translator_languages(){
+            const { num_columns, num_rows}  = get_table_sizes()
+            if(num_columns>=3){
+                let available_langauges=[]
+                for (var j = 1; j < (num_columns-1); j++) {
+                    let lang =document.getElementById('translation-table').rows[0].cells[j].innerText;
+                    available_langauges.push(lang)
+                }
+                return available_langauges;
+            }
+            return []
+        }
+        function add_languages_select(){    
+            const { num_columns, num_rows}  = get_table_sizes()
+            if(num_columns===2){
+                let select = document.getElementById('selectElementId');
+                select.innerHTML=''
+                var opt = document.createElement('option');
+                    opt.value = '';
+                    opt.innerHTML = 'No languages';
+                    select.appendChild(opt);
+            }else{
+                let languages = get_translator_languages();   
+                let select = document.getElementById('selectElementId');
+                    select.innerHTML=''
+
+                languages.forEach((locale)=>{
+                    var opt = document.createElement('option');
+                        opt.value = locale;
+                        opt.innerHTML = locale;
+                        select.appendChild(opt);
+                });
+            }
+        }
+        function get_option_selected(){
+            var e = document.getElementById("selectElementId");
+            var value = e.options[e.selectedIndex].value;
+            return value
+        }
+        function aux_find_column_by_locale(locale){
+            var rows = document.getElementById('translation-table').rows
+            const { num_columns, num_rows}  = get_table_sizes()
+            for (var j = 0; j < (num_columns); j++) {
+                if(rows[0].cells[j].innerText === locale){
+                    return j;
+                }
+
+            }
+            return -1;
+        }
+        function aux_get_translation_values_from(locale){
+            const { num_columns, num_rows}  = get_table_sizes()
+            const rows = document.getElementById('translation-table').rows
+            const locale_column = aux_find_column_by_locale(locale)
+            let translationValues=[]
+            if (locale_column !==-1){
+                for (var j = 1; j < rows.length; j++) {
+                    let v = rows[j].cells[locale_column].children[0].value
+                    translationValues.push(v)
+                }
+            }        
+            return translationValues
+        }
+        function aux_get_translator_keys(){
+            var rows = document.getElementById('translation-table').rows
+            const { num_columns, num_rows}  = get_table_sizes()
+            var translationKeys = []
+            for (var j = 1; j < num_rows; j++) {
+                k = rows[j].cells[0].children[0].value // la cell indica la columna de idioma en aquest cas es la columna de keys
+                translationKeys.push(k)
+            }
+            return translationKeys
+        }
+        function aux_create_dictionary(translationKeys,translationValues){
+            let translations_dictioanry={}
+            let i = 0
+            translationKeys.forEach((k)=>{
+                if(k!==""){
+                    translations_dictioanry[k] = translationValues[i++]
+                }
+            })
+            return translations_dictioanry
+        }
+        
+        function aux_create_json_file(jsonData){
+            let text = JSON.stringify(jsonData)
+            let file = new Blob([text], {type: 'text/plain'})
+            return URL.createObjectURL(file);
+        }
+
+        function download_languages(){
+           
+
+            let files_to_download={}
+            let translatorLanguages = get_translator_languages()
+            let translatorKeys = aux_get_translator_keys()
+            if( translatorLanguages.length===0 ){
+                return
+            }
+            if(translatorLanguages.translatorKeys===0 ){
+                return
+            }
+
+            document.getElementById("download-button-json").innerText='Update Files'
+            translatorLanguages.forEach ((locale)=>{
+                let jsonData = aux_create_dictionary(translatorKeys,aux_get_translation_values_from(locale))
+                files_to_download[locale]= aux_create_json_file(jsonData)  
+            })
+
+
+            //Create list of downloads
+            var ul = document.createElement("ul")
+            translatorLanguages.forEach(locale=>{
+                let li = document.createElement("li");
+                li.innerHTML = `<a href="${files_to_download[locale]}" class="dowloadLink" download="${locale}.json">${locale}.json dowload file</a>`;
+                ul.appendChild(li)
+            })
+            document.getElementById("translation-list-files").innerHTML=''
+            document.getElementById("translation-list-files").appendChild(ul)
+
+        }
+    </script>
+    
+    <h1>@ngx-translate/core JSON creator v0.0.1</h1>
+    <h2>Angular i18n</h2>
+
+
+    <div>
+        <h3>Translation options</h3>
+        <div >
+            <label for="language-addition"><b>add new language:</b></label>
+            <div>
+                <input type="text" id="deletion-input" name="language-addition" value="">
+                <button type="button"
+                onclick="add_new_language()" > Add Languages</button>
+                <button type="button"
+            onclick="add_row()" >
+            Add translation</button>
+            </div>
+        </div>
+
+        <div>
+                <label for="languages-availables"><b>Language to remove</b></label>
+                <div>
+                    <select name="languages-availables" id="selectElementId">
+                    </select>
+                    <button type="button"
+                    onclick="remove_by_language()" >
+                    Remove</button>
+                </div>
+        </div>
+        <div>
+            <label for="language-download"><b>Dowload languages</b></label>
+            <div>
+                <button id="download-button-json" name="language-download" type="button"
+                onclick="download_languages()" >
+                generate files</button>
+            </div>
+            <div id="translation-list-files">
+
+            </div>
+    </div>
+
+    </div>
+
+    <table class="tg" id='translation-table'>
+    <tr>
+        <td><b>Key</b></td>
+        <td>en</td>      
+        <td></td>
+    </tr>
+    <tr>
+        <td><input  class='input-translation' type="text" id="fname" name="fname" value="hello_world"></td>
+        <td><input  class='input-translation' type="text" id=" " name=" " value="Hello World!"></td>        
+        <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+    </tr>
+    </table>
+
+
+
+
+
+</body>
+</html>
