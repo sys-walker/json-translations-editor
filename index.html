@@ -224,8 +224,8 @@
             return translations_dictioanry
         }
         function aux_create_json_file(jsonData){
-            let text = JSON.stringify(jsonData)
-            let file = new Blob([text], {type: 'text/plain'})
+            let text = JSON.stringify(jsonData,null,4)
+            let file = new Blob([text], {type: "application/json"})
             return URL.createObjectURL(file);
         }
         function download_languages(){
