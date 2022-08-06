@@ -1,0 +1,17 @@
+{
+  "name": "TranslationsEditor",
+  "version": "0.0.1",
+  "author": "Pere Antoni Rollon",
+  "homepage": "https://github.com/sys-walker",
+  "scripts": {
+    "pretty": "npx prettier --check *.html",
+    "pretty-check": "npx prettier --check *.html",
+    "pretty-write": "npx prettier --write *.html"
+  },
+  "license": "ISC",
+  "private": true,
+  "devDependencies": {
+    "prettier": "2.7.1"
+  },
+  "description": "A Prettier codestyle"
+}
