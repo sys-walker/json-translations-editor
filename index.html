@@ -14671,7 +14671,7 @@
 
     <style type="text/css">
       /*
-      "" html.light "" .table 
+      "" html.light "" .table    #E7E9EB
       --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
 
       html.dark .table 
@@ -14709,6 +14709,9 @@
         border-bottom-color: rgb(222, 226, 230);
         border-bottom-style: solid;
         border-bottom-width: 1px;
+      }
+      .menu-format{
+        padding: 0.75rem;
       }
     </style>
 
@@ -14759,8 +14762,7 @@
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <div id="languages-tab-pane" class="container-fluid tab-pane active">
-          <br />
+        <div id="languages-tab-pane" class="menu-format container-fluid tab-pane active">
 
           <div id="languages-tab-collapsable" class="show">
             <div id="language-options-container" class="d-flex">
@@ -14787,8 +14789,8 @@
             >Close language menu</a
           >
         </div>
-        <div id="downloads-tab-pane" class="container-fluid tab-pane fade">
-          <br />
+        <div id="downloads-tab-pane" class="menu-format container-fluid tab-pane fade">
+          
           <div id="downloads-tab-collapsable" class="show">
             <div style="margin-bottom: 10px">
               <label for="language-download"><b>Dowload languages</b></label>
@@ -14810,13 +14812,29 @@
             >Close downloads menu</a
           >
         </div>
-        <div id="about-tab-pane" class="container-fluid tab-pane fade">
-          <br />
+        <div id="about-tab-pane" class="menu-format container-fluid tab-pane fade">
           <div id="about-tab-collapsable" class="show">
-            <h3>Menu 2</h3>
+            <h3>About</h3>
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-              rem aperiam.
+              This is the first language editor (at least as far as I know) from @ngx-translate/core.
+            </p>
+            <p>
+              The motivation that made me create this editor was my constant problem with the internationalization of applications.
+            </p>
+            <p>
+              The @ngx-translate/core plugin uses JSON for translations, but creating JSONs can be a difficult task if you are dealing with many languages or if you have to modify translations.
+            </p>
+            <p>
+              At that moment I remembered that Android Studio has a language editor to create XML translation files, facilitating the process of internationalizing Android applications.
+            </p>
+            <p>
+              That's why I designed this editor.
+            </p>
+            <h5>
+              Why is there only one file and is it so bloated?
+            </h5>
+            <p>
+              To avoid dependencies with external libraries and to be completely offline. Also because the moment you move the editor to another folder you don't have to worry about whether it about the dependencies
             </p>
           </div>
 
