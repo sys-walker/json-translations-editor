@@ -14670,6 +14670,13 @@
     </style>
 
     <style type="text/css">
+      /*
+      "" html.light "" .table 
+      --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+
+      html.dark .table 
+      --bs-table-striped-bg: rgba(250, 250, 250, 0.05);
+      */
       input.input-translation {
         width: 100%;
         border: none !important;
@@ -14680,69 +14687,146 @@
       }
       #language-options-add {
         margin-bottom: calc(12 * 0.063em) !important;
+        border-right-color: rgb(222, 226, 230);
+        border-right-style: solid;
+        border-right-width: 1px;
+        padding: calc(12 * 0.063em) !important;
       }
       #language-options-delete {
         margin-bottom: calc(12 * 0.063em) !important;
+        border-right-color: rgb(222, 226, 230);
+        border-right-style: solid;
+        border-right-width: 1px;
+        padding: calc(12 * 0.063em) !important;
       }
       #deletion-input {
         margin-bottom: calc(12 * 0.063em) !important;
+      }
+
+      #languages-tab-pane,
+      #downloads-tab-pane,
+      #about-tab-pane {
+        border-bottom-color: rgb(222, 226, 230);
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
       }
     </style>
 
     <title>Translate Editor</title>
   </head>
-  <body onload="onLoadTranslator()">
-    <div class="container-fluid">
-      <div>
-        <h1>@ngx-translate/core JSON creator v0.1.1</h1>
-        <h2>Angular i18n Translations</h2>
-      </div>
 
-      <div>
-        <h3>Translation options</h3>
-        <div style="display: flex; gap: 10px">
-          <div id="language-options-container">
-            <div id="language-options-add">
-              <label for="language-addition"><b>add new language:</b></label>
-              <div>
-                <input type="text" class="form-control" id="deletion-input" name="language-addition" value="" />
-                <button type="button" class="btn btn-success" onclick="add_new_language()">Add Languages</button>
-                <button type="button" class="btn btn-outline-primary" onclick="add_translation()">
-                  Add translation
-                </button>
-              </div>
-            </div>
-            <div id="language-options-delete">
-              <label for="languages-availables"><b>Language to remove</b></label>
-              <div style="display: flex; gap: 10px">
-                <select name="languages-availables" id="selectElementId" class="form-select"></select>
-                <button type="button" class="btn btn-danger" onclick="remove_by_language()">Remove</button>
-              </div>
-            </div>
-          </div>
-          <div style="margin-bottom: 10px">
-            <label for="language-download"><b>Dowload languages</b></label>
-            <div>
-              <button
-                class="btn btn-primary"
-                id="download-button-json"
-                name="language-download"
-                type="button"
-                onclick="download_languages()"
-              >
-                generate files
-              </button>
-            </div>
-            <div id="translation-list-files"></div>
-          </div>
-          <div style="margin-bottom: 10px">
-            <label for="dark-mode-editor"><b>Enable darkmode</b></label>
-            <div>
-              <button id="darkmode-button" name="dark-mode-editor" type="button" class="btn">ON</button>
-            </div>
-          </div>
+  <body onload="onLoadTranslator()">
+    <!--                        BEGIN HTML APPLICATION                        -->
+    <!--HEADER OF TRANSLATION-->
+    <header class="bd-header bg-primary py-3 d-flex align-items-stretch border-bottom border-dark">
+      <div class="container-fluid d-flex align-items-center">
+        <div>
+          <h1 class="d-flex align-items-center fs-4 text-white mb-0">
+            <!--img src="bootstrap-logo-white.svg" width="38" height="30" class="me-3" alt="Bootstrap"-->
+            Translations editor
+            <span class="ms-3 fs-6">v0.1.1</span>
+          </h1>
+          <p class="d-flex align-items-center fs-6 text-white mb-0">for @ngx-translate/core</p>
+        </div>
+        <!-- Darkmode button -->
+        <div class="btn-group ms-auto" role="group">
+          <button
+            id="darkmode-button"
+            name="dark-mode-editor"
+            type="button"
+            class="btn btn-outline-secondary text-white"
+          >
+            Dark Mode
+          </button>
         </div>
       </div>
+    </header>
+
+    <!-- NAVIGATION BAR-->
+    <div id="navigation-of-translator">
+      <!-- Nav pills -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="pill" href="#languages-tab-pane">Languages</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="pill" href="#downloads-tab-pane">Dowloads</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="pill" href="#about-tab-pane">About</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div id="languages-tab-pane" class="container-fluid tab-pane active">
+          <br />
+
+          <div id="languages-tab-collapsable" class="show">
+            <div id="language-options-container" class="d-flex">
+              <div id="language-options-add">
+                <label for="language-addition"><b>add new language:</b></label>
+                <div>
+                  <input type="text" class="form-control" id="deletion-input" name="language-addition" value="" />
+                  <button type="button" class="btn btn-success" onclick="add_new_language()">Add Languages</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="add_translation()">
+                    Add translation
+                  </button>
+                </div>
+              </div>
+              <div id="language-options-delete">
+                <label for="languages-availables"><b>Language to remove</b></label>
+                <div style="display: flex; gap: 10px">
+                  <select name="languages-availables" id="selectElementId" class="form-select"></select>
+                  <button type="button" class="btn btn-danger" onclick="remove_by_language()">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#languages-tab-collapsable" data-bs-toggle="collapse" aria-expanded="true" class=""
+            >Close language menu</a
+          >
+        </div>
+        <div id="downloads-tab-pane" class="container-fluid tab-pane fade">
+          <br />
+          <div id="downloads-tab-collapsable" class="show">
+            <div style="margin-bottom: 10px">
+              <label for="language-download"><b>Dowload languages</b></label>
+              <div>
+                <button
+                  class="btn btn-primary"
+                  id="download-button-json"
+                  name="language-download"
+                  type="button"
+                  onclick="download_languages()"
+                >
+                  generate files
+                </button>
+              </div>
+              <div id="translation-list-files"></div>
+            </div>
+          </div>
+          <a href="#downloads-tab-collapsable" data-bs-toggle="collapse" aria-expanded="true" class=""
+            >Close downloads menu</a
+          >
+        </div>
+        <div id="about-tab-pane" class="container-fluid tab-pane fade">
+          <br />
+          <div id="about-tab-collapsable" class="show">
+            <h3>Menu 2</h3>
+            <p>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
+              rem aperiam.
+            </p>
+          </div>
+
+          <a href="#about-tab-collapsable" data-bs-toggle="collapse" aria-expanded="true" class="">Close about</a>
+        </div>
+      </div>
+    </div>
+    <!-- Tranlation grid-->
+
+    <div class="container-fluid mt-2">
       <table class="table table-striped" id="translation-table">
         <thead>
           <tr>
@@ -14760,17 +14844,19 @@
         </tbody>
       </table>
     </div>
+      <!--                        END HTML APPLICATION                        -->
 
     <!-- Scripts binded to the Translator Editor -->
-    <script>
+    <script type="text/javascript">
       document.querySelector('#darkmode-button').onclick = function (e) {
         let nativeElement = document.getElementById('darkmode-button');
         darkmode.toggleDarkMode();
         switchDarkmodeText(nativeElement);
       };
+      
     </script>
     <!-- Scripts for different operations of the Translator Editor -->
-    <script>
+    <script type="text/javascript">
       function aux_update_download_files(pLanguage) {
         let listOfDownloads = document.getElementById('downloadables-files')?.getElementsByTagName('li');
         if (listOfDownloads) {
@@ -14812,13 +14898,13 @@
           }
         }
         if (darkmode.readValue(DarkMode.DATA_KEY) === 'light') {
-          nativeElement.classList.remove('btn-outline-light');
-          nativeElement.classList.add('btn-secondary');
-          nativeElement.innerText = 'ON';
+          //nativeElement.classList.remove('btn-outline-light');
+          //nativeElement.classList.add('btn-secondary');
+          nativeElement.innerText = 'Dark Mode';
         } else {
-          nativeElement.classList.remove('btn-secondary');
-          nativeElement.classList.add('btn-outline-light');
-          nativeElement.innerText = 'OFF';
+          //nativeElement.classList.remove('btn-secondary');
+          //nativeElement.classList.add('btn-outline-light');
+          nativeElement.innerText = 'Light Mode';
         }
       }
       function onLoadTranslator() {
