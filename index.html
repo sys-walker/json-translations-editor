@@ -14710,7 +14710,7 @@
         border-bottom-style: solid;
         border-bottom-width: 1px;
       }
-      .menu-format{
+      .menu-format {
         padding: 0.75rem;
       }
     </style>
@@ -14752,7 +14752,7 @@
         <li class="nav-item">
           <a class="nav-link active" data-bs-toggle="pill" href="#languages-tab-pane">Languages</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="download_languages()">
           <a class="nav-link" data-bs-toggle="pill" href="#downloads-tab-pane">Dowloads</a>
         </li>
         <li class="nav-item">
@@ -14763,7 +14763,6 @@
       <!-- Tab panes -->
       <div class="tab-content">
         <div id="languages-tab-pane" class="menu-format container-fluid tab-pane active">
-
           <div id="languages-tab-collapsable" class="show">
             <div id="language-options-container" class="d-flex">
               <div id="language-options-add">
@@ -14790,7 +14789,6 @@
           >
         </div>
         <div id="downloads-tab-pane" class="menu-format container-fluid tab-pane fade">
-          
           <div id="downloads-tab-collapsable" class="show">
             <div style="margin-bottom: 10px">
               <label for="language-download"><b>Dowload languages</b></label>
@@ -14815,26 +14813,24 @@
         <div id="about-tab-pane" class="menu-format container-fluid tab-pane fade">
           <div id="about-tab-collapsable" class="show">
             <h3>About</h3>
+            <p>This is the first language editor (at least as far as I know) from @ngx-translate/core.</p>
             <p>
-              This is the first language editor (at least as far as I know) from @ngx-translate/core.
+              The motivation that made me create this editor was my constant problem with the internationalization of
+              applications.
             </p>
             <p>
-              The motivation that made me create this editor was my constant problem with the internationalization of applications.
+              The @ngx-translate/core plugin uses JSON for translations, but creating JSONs can be a difficult task if
+              you are dealing with many languages or if you have to modify translations.
             </p>
             <p>
-              The @ngx-translate/core plugin uses JSON for translations, but creating JSONs can be a difficult task if you are dealing with many languages or if you have to modify translations.
+              At that moment I remembered that Android Studio has a language editor to create XML translation files,
+              facilitating the process of internationalizing Android applications.
             </p>
+            <p>That's why I designed this editor.</p>
+            <h5>Why is there only one file and is it so bloated?</h5>
             <p>
-              At that moment I remembered that Android Studio has a language editor to create XML translation files, facilitating the process of internationalizing Android applications.
-            </p>
-            <p>
-              That's why I designed this editor.
-            </p>
-            <h5>
-              Why is there only one file and is it so bloated?
-            </h5>
-            <p>
-              To avoid dependencies with external libraries and to be completely offline. Also because the moment you move the editor to another folder you don't have to worry about whether it about the dependencies
+              To avoid dependencies with external libraries and to be completely offline. Also because the moment you
+              move the editor to another folder you don't have to worry about the dependencies
             </p>
           </div>
 
@@ -14862,7 +14858,7 @@
         </tbody>
       </table>
     </div>
-      <!--                        END HTML APPLICATION                        -->
+    <!--                        END HTML APPLICATION                        -->
 
     <!-- Scripts binded to the Translator Editor -->
     <script type="text/javascript">
@@ -14871,7 +14867,6 @@
         darkmode.toggleDarkMode();
         switchDarkmodeText(nativeElement);
       };
-      
     </script>
     <!-- Scripts for different operations of the Translator Editor -->
     <script type="text/javascript">
