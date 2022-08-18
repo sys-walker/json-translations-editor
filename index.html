@@ -14685,33 +14685,49 @@
       #language-options-container {
         margin-bottom: calc(12 * 0.063em) !important;
       }
-      #language-options-add {
+      /*#language-options-add {
         margin-bottom: calc(12 * 0.063em) !important;
-        border-right-color: rgb(222, 226, 230);
-        border-right-style: solid;
-        border-right-width: 1px;
         padding: calc(12 * 0.063em) !important;
       }
       #language-options-delete {
         margin-bottom: calc(12 * 0.063em) !important;
-        border-right-color: rgb(222, 226, 230);
-        border-right-style: solid;
-        border-right-width: 1px;
         padding: calc(12 * 0.063em) !important;
-      }
+      }*/
+
       #deletion-input {
         margin-bottom: calc(12 * 0.063em) !important;
       }
+      .menu-format {
+        padding: 0.75rem;
+      }
 
-      #languages-tab-pane,
-      #downloads-tab-pane,
-      #about-tab-pane {
+      .line-bottom-panel {
+        margin-bottom: calc(12 * 0.063em) !important;
+        padding: calc(12 * 0.063em) !important;
         border-bottom-color: rgb(222, 226, 230);
         border-bottom-style: solid;
         border-bottom-width: 1px;
       }
-      .menu-format {
-        padding: 0.75rem;
+      .option-menu-w-separator {
+        margin-bottom: calc(12 * 0.063em) !important;
+        padding: calc(12 * 0.063em) !important;
+        border-right-color: rgb(222, 226, 230);
+        border-right-style: solid;
+        border-right-width: 1px;
+      }
+
+      /*Dark mode editor */
+      html.dark .line-bottom-panel {
+        border-bottom-color: rgb(81, 81, 81);
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+      }
+      html.dark .option-menu-w-separator {
+        margin-bottom: calc(12 * 0.063em) !important;
+        padding: calc(12 * 0.063em) !important;
+        border-bottom-color: rgb(81, 81, 81);
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
       }
     </style>
 
@@ -14762,10 +14778,10 @@
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <div id="languages-tab-pane" class="menu-format container-fluid tab-pane active">
+        <div id="languages-tab-pane" class="menu-format container-fluid tab-pane active line-bottom-panel">
           <div id="languages-tab-collapsable" class="show">
             <div id="language-options-container" class="d-flex">
-              <div id="language-options-add">
+              <div id="language-options-add" class="option-menu-w-separator">
                 <label for="language-addition"><b>add new language:</b></label>
                 <div>
                   <input type="text" class="form-control" id="deletion-input" name="language-addition" value="" />
@@ -14775,7 +14791,7 @@
                   </button>
                 </div>
               </div>
-              <div id="language-options-delete">
+              <div id="language-options-delete" class="option-menu-w-separator">
                 <label for="languages-availables"><b>Language to remove</b></label>
                 <div style="display: flex; gap: 10px">
                   <select name="languages-availables" id="selectElementId" class="form-select"></select>
@@ -14788,7 +14804,7 @@
             >Close language menu</a
           >
         </div>
-        <div id="downloads-tab-pane" class="menu-format container-fluid tab-pane fade">
+        <div id="downloads-tab-pane" class="menu-format container-fluid tab-pane fade line-bottom-panel">
           <div id="downloads-tab-collapsable" class="show">
             <div style="margin-bottom: 10px">
               <label for="language-download"><b>Dowload languages</b></label>
@@ -14810,27 +14826,21 @@
             >Close downloads menu</a
           >
         </div>
-        <div id="about-tab-pane" class="menu-format container-fluid tab-pane fade">
+        <div id="about-tab-pane" class="menu-format container-fluid tab-pane fade line-bottom-panel">
           <div id="about-tab-collapsable" class="show">
-            <h3>About</h3>
-            <p>This is the first language editor (at least as far as I know) from @ngx-translate/core.</p>
+            <h4>About the editor</h4>
+
             <p>
-              The motivation that made me create this editor was my constant problem with the internationalization of
-              applications.
+              This is the first language editor (at least as far as I know) for angular written with HTML ,CSS and JS.
+              <br />
+              The editor is suitable for "@ngx-translate/core" or other library wich uses JSON for translations.<br />
+              The UI is inspired by Android Studio's Language editor.
             </p>
+
             <p>
-              The @ngx-translate/core plugin uses JSON for translations, but creating JSONs can be a difficult task if
-              you are dealing with many languages or if you have to modify translations.
-            </p>
-            <p>
-              At that moment I remembered that Android Studio has a language editor to create XML translation files,
-              facilitating the process of internationalizing Android applications.
-            </p>
-            <p>That's why I designed this editor.</p>
-            <h5>Why is there only one file and is it so bloated?</h5>
-            <p>
-              To avoid dependencies with external libraries and to be completely offline. Also because the moment you
-              move the editor to another folder you don't have to worry about the dependencies
+              <b>Why is there only one file and is it so bloated?</b><br />
+              - To avoid local or external file dependencies.<br />
+              - To be full offline
             </p>
           </div>
 
