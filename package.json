@@ -1,17 +1,19 @@
 {
-  "name": "TranslationsEditor",
+  "name": "TranslationEditorManager",
   "version": "0.0.1",
   "author": "Pere Antoni Rollon",
   "homepage": "https://github.com/sys-walker",
   "scripts": {
-    "pretty": "npx prettier --check *.html",
-    "pretty-check": "npx prettier --check *.html",
-    "pretty-write": "npx prettier --write *.html"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretty": "npx prettier --check ./public/",
+    "pretty-check": "npx prettier --check ./public/",
+    "pretty-write": "npx prettier --write ./public/"
   },
   "license": "ISC",
   "private": true,
-  "devDependencies": {
-    "prettier": "2.7.1"
-  },
-  "description": "A Prettier codestyle"
+  "description": "A Prettier codestyle",
+  "dependencies": {
+    "firebase-tools": "^11.8.0",
+    "prettier": "^2.7.1"
+  }
 }

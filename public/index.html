@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The page supports both dark and light color schemes,
+         and the page author prefers / default is light. -->
+    <meta name="color-scheme" content="light dark" />
+    <!-- Replace the Bootstrap CSS with the
+         Bootstrap-Dark Variant CSS (also available cdn)-->
+    <link rel="stylesheet" href="static/css/bootstrap-nightshade.min.css" />
+
+    <link rel="stylesheet" href="static/css/editor.css" />
+
+    <title>Translate Editor Web</title>
+  </head>
+
+  <body onload="onLoadTranslator()">
+    <!--                        BEGIN HTML APPLICATION                        -->
+    <!--HEADER OF TRANSLATION-->
+    <header class="bd-header bg-primary py-3 d-flex align-items-stretch border-bottom border-dark">
+      <div class="container-fluid d-flex align-items-center">
+        <div>
+          <h1 class="d-flex align-items-center fs-4 text-white mb-0">
+            <!--img src="bootstrap-logo-white.svg" width="38" height="30" class="me-3" alt="Bootstrap"-->
+            Translations editor
+            <span class="ms-3 fs-6">v0.1.1</span>
+          </h1>
+          <p class="d-flex align-items-center fs-6 text-white mb-0">for @ngx-translate/core</p>
+        </div>
+        <!-- Darkmode button -->
+        <div class="btn-group ms-auto" role="group">
+          <button
+            id="darkmode-button"
+            name="dark-mode-editor"
+            type="button"
+            class="btn btn-outline-secondary text-white"
+          >
+            Dark Mode
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAVIGATION BAR-->
+    <div id="navigation-of-translator">
+      <!-- Nav pills -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="pill" href="#languages-tab-pane">Languages</a>
+        </li>
+        <li class="nav-item" onclick="download_languages()">
+          <a class="nav-link" data-bs-toggle="pill" href="#downloads-tab-pane">Dowloads</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="pill" href="#about-tab-pane">About</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div id="languages-tab-pane" class="menu-format container-fluid tab-pane active line-bottom-panel">
+          <div id="languages-tab-collapsable" class="show">
+            <div id="language-options-container" class="d-flex">
+              <div id="language-options-add" class="option-menu-w-separator">
+                <label for="language-addition"><b>add new language:</b></label>
+                <div>
+                  <input type="text" class="form-control" id="deletion-input" name="language-addition" value="" />
+                  <button type="button" class="btn btn-success" onclick="add_new_language()">Add Languages</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="add_translation()">
+                    Add translation
+                  </button>
+                </div>
+              </div>
+              <div id="language-options-delete" class="option-menu-w-separator">
+                <label for="languages-availables"><b>Language to remove</b></label>
+                <div style="display: flex; gap: 10px">
+                  <select name="languages-availables" id="selectElementId" class="form-select"></select>
+                  <button type="button" class="btn btn-danger" onclick="remove_by_language()">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#languages-tab-collapsable" data-bs-toggle="collapse" aria-expanded="true" class=""
+            >Close language menu</a
+          >
+        </div>
+        <div id="downloads-tab-pane" class="menu-format container-fluid tab-pane fade line-bottom-panel">
+          <div id="downloads-tab-collapsable" class="show">
+            <div style="margin-bottom: 10px">
+              <label for="language-download"><b>Dowload languages</b></label>
+              <div>
+                <button
+                  class="btn btn-primary"
+                  id="download-button-json"
+                  name="language-download"
+                  type="button"
+                  onclick="download_languages()"
+                >
+                  generate files
+                </button>
+              </div>
+              <div id="translation-list-files"></div>
+            </div>
+          </div>
+          <a href="#downloads-tab-collapsable" data-bs-toggle="collapse" aria-expanded="true" class=""
+            >Close downloads menu</a
+          >
+        </div>
+        <div id="about-tab-pane" class="menu-format container-fluid tab-pane fade line-bottom-panel">
+          <div id="about-tab-collapsable" class="show">
+            <h4>About the editor</h4>
+
+            <p>
+              This is the first language editor (at least as far as I know) for angular written with HTML ,CSS and JS.
+              <br />
+              The editor is suitable for "@ngx-translate/core" or other library wich uses JSON for translations.<br />
+              The UI is inspired by Android Studio's Language editor.
+            </p>
+
+            <p>
+              <b>Why is there only one file and is it so bloated?</b><br />
+              - To avoid local or external file dependencies.<br />
+              - To be full offline with one file
+            </p>
+          </div>
+
+          <a href="#about-tab-collapsable" data-bs-toggle="collapse" aria-expanded="true" class="">Close about</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tranlation grid-->
+    <div class="container-fluid mt-2">
+      <table class="table table-striped" id="translation-table">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>en</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input class="input-translation form-control" type="text" id="" name="" value="hello_world" /></td>
+            <td><input class="input-translation form-control" type="text" id="" name="" value="Hello World!" /></td>
+            <td><input type="button" class="btn btn-danger" value="Delete" onclick="deleteRow(this)" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!--                        END HTML APPLICATION                        -->
+
+    <!-- Scripts binded to the Translator Editor -->
+    <script src="static/js/js-binded-ops-editor.js" crossorigin="anonymous"></script>
+
+    <!-- Scripts for different operations of the Translator Editor -->
+    <script src="static/js/js-editor.js" crossorigin="anonymous"></script>
+
+    <!-- Required DarkMode JavaScript (Also available via cdn )-->
+    <script src="static/js/darkmode.min.js" crossorigin="anonymous"></script>
+
+    <!-- JavaScript of Boostrap 5 (Also available via cdn )--->
+    <script src="static/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  </body>
+</html>

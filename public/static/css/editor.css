@@ -1,0 +1,56 @@
+h1 {
+  color: blue !important;
+}
+
+input.input-translation {
+  width: 100%;
+  border: none !important;
+  background: transparent !important;
+}
+#language-options-container {
+  margin-bottom: calc(12 * 0.063em) !important;
+}
+/*#language-options-add {
+  margin-bottom: calc(12 * 0.063em) !important;
+  padding: calc(12 * 0.063em) !important;
+}
+#language-options-delete {
+  margin-bottom: calc(12 * 0.063em) !important;
+  padding: calc(12 * 0.063em) !important;
+}*/
+
+#deletion-input {
+  margin-bottom: calc(12 * 0.063em) !important;
+}
+.menu-format {
+  padding: 0.75rem;
+}
+
+.line-bottom-panel {
+  margin-bottom: calc(12 * 0.063em) !important;
+  padding: calc(12 * 0.063em) !important;
+  border-bottom-color: rgb(222, 226, 230);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+.option-menu-w-separator {
+  margin-bottom: calc(12 * 0.063em) !important;
+  padding: calc(12 * 0.063em) !important;
+  border-right-color: rgb(222, 226, 230);
+  border-right-style: solid;
+  border-right-width: 1px;
+}
+
+/*Dark mode editor */
+html.dark .line-bottom-panel {
+  border-bottom-color: rgb(81, 81, 81);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+html.dark .option-menu-w-separator {
+  margin-bottom: calc(12 * 0.063em) !important;
+  padding: calc(12 * 0.063em) !important;
+  border-right-color: rgb(81, 81, 81);
+  border-right-style: solid;
+  border-right-width: 1px;
+}
