@@ -8,7 +8,7 @@ A simple editor for @ngx-translate/core library  written in HTML, JS, Boostrap.
 ## Getting Started
 ### For regular use
 
- - **online**:  [JSON translation web](https://json-translations-editor.web.app/) 
+ - **online**:  [JSON translation web](https://sys-walker.github.io/json-translations-editor/) 
  - **offline v1**:  clone the repository then place elements of /public inside your webserver like `python3 -m http.server`
  - **offline v2**: Download the bundle file translator
 
@@ -35,7 +35,7 @@ Run automatic code formatter
 
 #### Edit the code:
 
-The code is placed in the folder `public/`
+The code is placed in the folder `docs/`
 
 ## Deployment
 
@@ -45,7 +45,7 @@ Add additional notes to deploy this on a live system
 
   - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
     for the Code of Conduct
-  - [Firebase](https://creativecommons.org/) - Used to host and deploy  the web-app online
+  - [Github pages](https://pages.github.com/) - Used to host and deploy  the web-app online
 
 ## Contributing
 

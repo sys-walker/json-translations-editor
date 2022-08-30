@@ -6,14 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pretty": "npx prettier --check ./public/",
-    "pretty-check": "npx prettier --check ./public/",
-    "pretty-write": "npx prettier --write ./public/"
+    "pretty-check": "npx prettier --check ./docs/",
+    "pretty-write": "npx prettier --write ./docs/"
   },
   "license": "ISC",
   "private": true,
   "description": "A Prettier codestyle",
   "dependencies": {
-    "firebase-tools": "^11.8.0",
     "prettier": "^2.7.1"
   }
 }
