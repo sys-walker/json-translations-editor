@@ -47,6 +47,7 @@ function switchDarkmodeText(nativeElement) {
     //nativeElement.classList.add('btn-outline-light');
     nativeElement.innerText = 'Light Mode';
   }
+  amongus()
 }
 function onLoadTranslator() {
   add_languages_select();
@@ -251,4 +252,19 @@ function download_languages() {
   });
   document.getElementById('translation-list-files').innerHTML = '';
   document.getElementById('translation-list-files').appendChild(ul);
+}
+
+function amongus(){
+  var list = document.getElementsByClassName("icon-switchable");
+  if (darkmode.readValue(DarkMode.DATA_KEY) === 'light') {
+    for (var i = 0; i < list.length; i++) {
+      let icon_src =list[i].src;
+      list[i].src = icon_src.replace("-dark.svg",".svg")
+    }
+  }else{
+    for (var i = 0; i < list.length; i++) {
+        let icon_src =list[i].src;
+        list[i].src = icon_src.replace(".svg","-dark.svg")
+     }
+  }
 }
