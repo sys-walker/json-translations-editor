@@ -246,7 +246,7 @@ function download_languages() {
   translatorLanguages.forEach((locale) => {
     let li = document.createElement('li');
     li.classList.add('list-group-item');
-    li.innerHTML = `<img src="http://localhost:8000/static/img/json-file-icon${colorsScheme}.svg" style="width: 38px;margin-right: 1em;"> <a href="${files_to_download[locale]}" class="dowloadLink" download="${locale}.json">[${locale}.json] i18n file</a>`;
+    li.innerHTML = `<img src="static/img/json-file-icon${colorsScheme}.svg" style="width: 38px;margin-right: 1em;"> <a href="${files_to_download[locale]}" class="dowloadLink" download="${locale}.json">[${locale}.json] i18n file</a>`;
     ul.appendChild(li);
   });
   document.getElementById('translation-list-files').innerHTML = '';
