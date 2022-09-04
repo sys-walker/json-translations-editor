@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="static/css/editor.css" />
 
     <title>Translate Editor Web</title>
-    <link rel="icon" type="image/x-icon" href="static/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="static/img/favicon.ico" />
   </head>
 
   <body onload="onLoadTranslator()">
@@ -89,20 +89,24 @@
         </div>
         <div id="downloads-tab-pane" class="menu-format container-fluid tab-pane fade line-bottom-panel">
           <div id="downloads-tab-collapsable" class="show">
-            <div style="margin-bottom: 10px">
-              <label for="language-download"><b>Dowload languages</b></label>
-              <div>
-                <button
-                  class="btn btn-primary"
-                  id="download-button-json"
-                  name="language-download"
-                  type="button"
-                  onclick="download_languages()"
-                >
-                  generate files
-                </button>
+            <div id="language-options-container" class="d-flex">
+              <div id="language-options-add" class="option-menu-w-separator">
+                <label for="language-download"><b>Generate files</b></label>
+                <div>
+                  <button
+                    style="width: 100%"
+                    name="language-download"
+                    id="download-button-json"
+                    type="button"
+                    class="btn btn-link"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onclick="download_languages()"
+                  >
+                    <img class="icon-switchable" src="static/img/file-download-icon.svg" style="width: 38px" alt="" />
+                  </button>
+                </div>
               </div>
-              <div id="translation-list-files"></div>
             </div>
           </div>
           <a href="#downloads-tab-collapsable" data-bs-toggle="collapse" aria-expanded="true" class=""
@@ -152,42 +156,28 @@
       </table>
     </div>
 
-    <!--                        END HTML APPLICATION                        -->
-
-
-
-
-
-
-    <button  onclick="amongus()" type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Launch demo modal
-      <img class="icon-switchable" src="static/img/json-file-icon.svg" style="width: 38px;" alt="">
-    </button>
-
-         <!-- Button trigger modal -->
-<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-  <img class="icon-switchable" src="static/img/file-download-icon.svg" style="width: 38px;" alt="">
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Download your language files</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="translation-list-files"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!--
+          Future feature download in on file
+          <button type="button" class="btn btn-primary" onclick="console.log('Not implemented yet')">Save changes</button>
+        -->
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    <!--                        END HTML APPLICATION                        -->
     <!-- Scripts binded to the Translator Editor -->
     <script src="static/js/js-binded-ops-editor.js" crossorigin="anonymous"></script>
 

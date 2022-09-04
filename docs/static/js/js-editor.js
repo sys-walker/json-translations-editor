@@ -39,15 +39,12 @@ function switchDarkmodeText(nativeElement) {
     }
   }
   if (darkmode.readValue(DarkMode.DATA_KEY) === 'light') {
-    //nativeElement.classList.remove('btn-outline-light');
-    //nativeElement.classList.add('btn-secondary');
+    switchIconsTo('light');
     nativeElement.innerText = 'Dark Mode';
   } else {
-    //nativeElement.classList.remove('btn-secondary');
-    //nativeElement.classList.add('btn-outline-light');
+    switchIconsTo('dark');
     nativeElement.innerText = 'Light Mode';
   }
-  amongus()
 }
 function onLoadTranslator() {
   add_languages_select();
@@ -232,7 +229,7 @@ function download_languages() {
     return;
   }
 
-  document.getElementById('download-button-json').innerText = 'Update Files';
+  //document.getElementById('download-button-json').innerText = 'Update Files';
   translatorLanguages.forEach((locale) => {
     let jsonData = aux_create_dictionary(translatorKeys, aux_get_translation_values_from(locale));
     files_to_download[locale] = aux_create_json_file(jsonData);
@@ -244,27 +241,35 @@ function download_languages() {
   ul.classList.add('list-group');
   ul.classList.add('list-group-flush');
 
+  let colorsScheme = `${getColorsMode() === 'light' ? '' : '-dark'}`;
+
   translatorLanguages.forEach((locale) => {
     let li = document.createElement('li');
     li.classList.add('list-group-item');
-    li.innerHTML = `<a href="${files_to_download[locale]}" class="dowloadLink" download="${locale}.json">${locale}.json dowload file</a>`;
+    li.innerHTML = `<img src="http://localhost:8000/static/img/json-file-icon${colorsScheme}.svg" style="width: 38px;margin-right: 1em;"> <a href="${files_to_download[locale]}" class="dowloadLink" download="${locale}.json">[${locale}.json] i18n file</a>`;
     ul.appendChild(li);
   });
   document.getElementById('translation-list-files').innerHTML = '';
   document.getElementById('translation-list-files').appendChild(ul);
 }
-
-function amongus(){
-  var list = document.getElementsByClassName("icon-switchable");
-  if (darkmode.readValue(DarkMode.DATA_KEY) === 'light') {
+function switchIconsTo(mode) {
+  var list = document.getElementsByClassName('icon-switchable');
+  if (mode === 'light') {
     for (var i = 0; i < list.length; i++) {
-      let icon_src =list[i].src;
-      list[i].src = icon_src.replace("-dark.svg",".svg")
+      let icon_src = list[i].src;
+      list[i].src = icon_src.replace('-dark.svg', '.svg');
     }
-  }else{
+  } else {
     for (var i = 0; i < list.length; i++) {
-        let icon_src =list[i].src;
-        list[i].src = icon_src.replace(".svg","-dark.svg")
-     }
+      let icon_src = list[i].src;
+      list[i].src = icon_src.replace('.svg', '-dark.svg');
+    }
+  }
+}
+function getColorsMode() {
+  if (darkmode.readValue(DarkMode.DATA_KEY) === 'light') {
+    return 'light';
+  } else {
+    return 'dark';
   }
 }
