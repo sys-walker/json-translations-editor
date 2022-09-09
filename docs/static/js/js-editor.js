@@ -214,6 +214,15 @@ function aux_create_dictionary(translationKeys, translationValues) {
   return translations_dictioanry;
 }
 function aux_create_json_file(jsonData) {
+  //receives raw flat JSON by default
+  let flatFiles = document.querySelector('input[name=flatJSON]:checked').value;
+
+  if (!JSON.parse(flatFiles)) {
+    console.log('Unflattening json');
+    let unflattered = Object.unflatten(jsonData);
+    jsonData = unflattered;
+  }
+
   let text = JSON.stringify(jsonData, null, 4);
   let file = new Blob([text], { type: 'application/json' });
   return URL.createObjectURL(file);
@@ -229,7 +238,6 @@ function download_languages() {
     return;
   }
 
-  //document.getElementById('download-button-json').innerText = 'Update Files';
   translatorLanguages.forEach((locale) => {
     let jsonData = aux_create_dictionary(translatorKeys, aux_get_translation_values_from(locale));
     files_to_download[locale] = aux_create_json_file(jsonData);
@@ -242,27 +250,38 @@ function download_languages() {
   ul.classList.add('list-group-flush');
 
   let colorsScheme = `${getColorsMode() === 'light' ? '' : '-dark'}`;
+  let themedIcon_src = `static/img/json-file-icon${colorsScheme}.svg`;
 
   translatorLanguages.forEach((locale) => {
     let li = document.createElement('li');
     li.classList.add('list-group-item');
-    li.innerHTML = `<img src="static/img/json-file-icon${colorsScheme}.svg" style="width: 38px;margin-right: 1em;"> <a href="${files_to_download[locale]}" class="dowloadLink" download="${locale}.json">[${locale}.json] i18n file</a>`;
+    li.innerHTML = `<img src="${themedIcon_src}" style="width: 38px;margin-right: 1em;"> <a href="${files_to_download[locale]}" class="dowloadLink" download="${locale}.json">[${locale}.json] i18n file</a>`;
     ul.appendChild(li);
   });
   document.getElementById('translation-list-files').innerHTML = '';
   document.getElementById('translation-list-files').appendChild(ul);
 }
 function switchIconsTo(mode) {
+  console.log('Called to switch icons');
   var list = document.getElementsByClassName('icon-switchable');
   if (mode === 'light') {
     for (var i = 0; i < list.length; i++) {
       let icon_src = list[i].src;
-      list[i].src = icon_src.replace('-dark.svg', '.svg');
+      if (icon_src.includes('-dark.svg')) {
+        list[i].src = icon_src.replace('-dark.svg', '.svg');
+      } else {
+        console.log('already light icon');
+      }
     }
   } else {
+    console.log('switching to dark');
     for (var i = 0; i < list.length; i++) {
       let icon_src = list[i].src;
-      list[i].src = icon_src.replace('.svg', '-dark.svg');
+      if (icon_src.includes('-dark.svg')) {
+        console.log('already dark icon');
+      } else {
+        list[i].src = icon_src.replace('.svg', '-dark.svg');
+      }
     }
   }
 }
@@ -273,3 +292,43 @@ function getColorsMode() {
     return 'dark';
   }
 }
+//Functions to flat or unflat JSON
+//https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-javascript-objects#:~:text=Flatten%20a%20JSON%20object%3A,))%20%7B%20var%20length%20%3D%20table.
+Object.unflatten = function (data) {
+  'use strict';
+  if (Object(data) !== data || Array.isArray(data)) return data;
+  var regex = /\.?([^.\[\]]+)|\[(\d+)\]/g,
+    resultholder = {};
+  for (var p in data) {
+    var cur = resultholder,
+      prop = '',
+      m;
+    while ((m = regex.exec(p))) {
+      cur = cur[prop] || (cur[prop] = m[2] ? [] : {});
+      prop = m[2] || m[1];
+    }
+    cur[prop] = data[p];
+  }
+  return resultholder[''] || resultholder;
+};
+
+Object.flatten = function (data) {
+  var result = {};
+  function recurse(cur, prop) {
+    if (Object(cur) !== cur) {
+      result[prop] = cur;
+    } else if (Array.isArray(cur)) {
+      for (var i = 0, l = cur.length; i < l; i++) recurse(cur[i], prop + '[' + i + ']');
+      if (l == 0) result[prop] = [];
+    } else {
+      var isEmpty = true;
+      for (var p in cur) {
+        isEmpty = false;
+        recurse(cur[p], prop ? prop + '.' + p : p);
+      }
+      if (isEmpty && prop) result[prop] = {};
+    }
+  }
+  recurse(data, '');
+  return result;
+};
