@@ -213,7 +213,7 @@ function aux_create_dictionary(translationKeys, translationValues) {
   });
   return translations_dictioanry;
 }
-function aux_create_json_file(jsonData) {
+function aux_create_formated_json(jsonData) {
   //receives raw flat JSON by default
   let flatFiles = document.querySelector('input[name=flatJSON]:checked').value;
 
@@ -224,9 +224,14 @@ function aux_create_json_file(jsonData) {
   }
 
   let text = JSON.stringify(jsonData, null, 4);
-  let file = new Blob([text], { type: 'application/json' });
+  return text;
+}
+
+function aux_create_URLObject_json(jsonData) {
+  let file = new Blob([jsonData], { type: 'application/json' });
   return URL.createObjectURL(file);
 }
+
 function download_languages() {
   let files_to_download = {};
   let translatorLanguages = get_translator_languages();
@@ -240,7 +245,7 @@ function download_languages() {
 
   translatorLanguages.forEach((locale) => {
     let jsonData = aux_create_dictionary(translatorKeys, aux_get_translation_values_from(locale));
-    files_to_download[locale] = aux_create_json_file(jsonData);
+    files_to_download[locale] = aux_create_URLObject_json(aux_create_formated_json(jsonData));
   });
 
   //Create list of downloads
@@ -332,3 +337,25 @@ Object.flatten = function (data) {
   recurse(data, '');
   return result;
 };
+
+function download_zip_of_languages() {
+  let translatorLanguages = get_translator_languages();
+  let translatorKeys = aux_get_translator_keys();
+  if (translatorLanguages.length === 0) {
+    return;
+  }
+  if (translatorKeys.length === 0) {
+    return;
+  }
+
+  let zip = new JSZip();
+  translatorLanguages.forEach((locale) => {
+    let jsonData = aux_create_dictionary(translatorKeys, aux_get_translation_values_from(locale));
+    zip.file(`${locale}.json`, aux_create_formated_json(jsonData));
+  });
+
+  zip.generateAsync({ type: 'blob' }).then(function (content) {
+    // see FileSaver.js
+    saveAs(content, 'i18n.zip');
+  });
+}

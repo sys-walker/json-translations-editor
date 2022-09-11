@@ -17,6 +17,18 @@
     <link rel="icon" type="image/x-icon" href="static/img/favicon.ico" />
   </head>
 
+  <!-- Scripts for different operations of the Translator Editor -->
+  <script src="static/js/js-editor.js" crossorigin="anonymous"></script>
+
+  <!-- Required DarkMode JavaScript (Also available via cdn )-->
+  <script src="static/js/darkmode.min.js" crossorigin="anonymous"></script>
+
+  <!-- JavaScript of Boostrap 5 (Also available via cdn )--->
+  <script src="static/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <!-- Scripts for JSzip for download i18n files and saving it--->
+  <script src="static/js/jszip.js" crossorigin="anonymous"></script>
+  <script src="static/js/FileSaver.js" crossorigin="anonymous"></script>
+
   <body onload="onLoadTranslator()">
     <!--                        BEGIN HTML APPLICATION                        -->
     <!--HEADER OF TRANSLATION-->
@@ -197,10 +209,8 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <!--
-          Future feature download in on file
-          <button type="button" class="btn btn-primary" onclick="console.log('Not implemented yet')">Save changes</button>
-        -->
+
+            <button type="button" class="btn btn-primary" onclick="download_zip_of_languages()">Download all</button>
           </div>
         </div>
       </div>
@@ -208,14 +218,5 @@
     <!--                        END HTML APPLICATION                        -->
     <!-- Scripts binded to the Translator Editor -->
     <script src="static/js/js-binded-ops-editor.js" crossorigin="anonymous"></script>
-
-    <!-- Scripts for different operations of the Translator Editor -->
-    <script src="static/js/js-editor.js" crossorigin="anonymous"></script>
-
-    <!-- Required DarkMode JavaScript (Also available via cdn )-->
-    <script src="static/js/darkmode.min.js" crossorigin="anonymous"></script>
-
-    <!-- JavaScript of Boostrap 5 (Also available via cdn )--->
-    <script src="static/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   </body>
 </html>
