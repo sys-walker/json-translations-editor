@@ -1,0 +1,7 @@
+{
+  "name": "json-translations-editor-angular",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
