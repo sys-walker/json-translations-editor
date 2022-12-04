@@ -1,20 +1,56 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> Translations editor </ion-title>
+    <ion-buttons slot="end">
+      <ion-icon slot="start" name="sunny-outline" *ngIf="!dark"></ion-icon>
+      <ion-icon slot="start" name="moon-outline" *ngIf="dark"></ion-icon>
+      <ion-label *ngIf="!dark" style="margin-inline-end: 0.3em;">
+        Light Mode
+      </ion-label>
+      <ion-label *ngIf="dark" style="margin-inline-end: 0.3em;">
+        Dark Mode
+      </ion-label>
+      <ion-toggle
+      slot="end"
+      class="custom-switch"
+      mode="ios"
+      [(ngModel)]="dark"
+      [ngModelOptions]="{standalone: true}"
+      checked="false"
+      (ngModelChange)="enableDarkMode($event)"
+    ></ion-toggle>
+    </ion-buttons>
+    <div>
+      
+      
+    </div>
+    
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <ion-segment class="navigation-of-translator" value="language" [(ngModel)]="selected">
+    <ion-segment-button value="language">
+      <p>Language</p>
+    </ion-segment-button>
+    <ion-segment-button value="downloads">
+      <p>downloads</p>
+    </ion-segment-button>
+    <ion-segment-button value="about">
+      <p>About</p>
+    </ion-segment-button>
+  </ion-segment>
+  <app-segments-panels [panelName]="selected"></app-segments-panels>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col *ngFor="let v of theArrayHeaders"> {{v}}</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let _ of theArray; let i = index"  style="border: 1px solid red;">
+      <ion-col style="border: 1px solid blue;"><ion-button size="small" color="danger" (click)="deleteRow(i)">X</ion-button></ion-col>
+      <ion-col *ngFor="let _ of theArray[i]; let j = index" [innerHTML]="theArray[i][j] | safeHTML"> </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

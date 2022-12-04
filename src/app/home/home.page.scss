@@ -1,27 +1,27 @@
-#container {
-  text-align: center;
+ion-toggle.custom-switch {
+  //Keep relation proportion like 51:32
+  --custom-switch-width: 51px;
+  --custom-switch-height: 32px;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  //False
+  --handle-background: #e0e0e0;
+  --background: var(--color);
+  //True
+  --handle-background-checked: #6a6a6a;
+  --background-checked: var(--color);
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+  //Override ion-toggle config
+  --border-radius: 16px;
+  --handle-border-radius: 25.5px;
+  --handle-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16), 0 3px 1px rgba(0, 0, 0, 0.1);
+  --handle-height: calc(var(--custom-switch-height) - (2px * 2));
+  --handle-max-height: calc(100% - var(--handle-spacing) * 2);
+  --handle-width: calc(var(--custom-switch-height) - (2px * 2));
+  --handle-spacing: 2px;
+  --handle-transition: transform 300ms, width 120ms ease-in-out 80ms, left 110ms ease-in-out 80ms,
+    right 110ms ease-in-out 80ms;
+  width: var(--custom-switch-width);
+  height: var(--custom-switch-height);
+  contain: strict;
+  overflow: hidden;
 }
