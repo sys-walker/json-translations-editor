@@ -13,7 +13,7 @@ const TAG = 'HomePage';
 export class HomePage implements OnInit,OnDestroy{
   @ViewChild('someInput') someInput!: ElementRef;
   dark: boolean = false;
-  selected: string = 'language';
+  selected: string = 'file';
   theArrayHeaders = ['Key', 'en'];
   theArray = [
     [
@@ -34,14 +34,7 @@ export class HomePage implements OnInit,OnDestroy{
   downloadRequestListener:Registry;
 
 
-  constructor(private AppMain: AppComponent) {
-    /*this.sharedEv.event.subscribe((res: ITranslatorEvent) => {
-      this.manageEvent(res);
-    });*/
-    /*this.sharedEv.getSubject().subscribe((res: ITranslatorEvent) => {
-      this.manageEvent(res);
-    });*/
-  }
+  constructor(private AppMain: AppComponent) {  }
   ngOnInit(): void {
     this.addLanguageListener = EventBus.getInstance().register(
       'IAddLanguageEv',

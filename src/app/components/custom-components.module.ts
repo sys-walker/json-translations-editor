@@ -8,6 +8,7 @@ import { PanelLanguageComponent } from './segment-panel/panel-language/panel-lan
 import { PanelDownloadsComponent } from './segment-panel/panel-downloads/panel-downloads.component';
 import { PanelAboutComponent } from './segment-panel/panel-about/panel-about.component';
 import { ModalDownloadsListComponent } from './modal-downloads-list/modal-downloads-list.component';
+import { PanelFileComponent } from './segment-panel/panel-file/panel-file.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, RouterModule, ReactiveFormsModule],
@@ -17,6 +18,7 @@ import { ModalDownloadsListComponent } from './modal-downloads-list/modal-downlo
     PanelDownloadsComponent,
     PanelAboutComponent,
     ModalDownloadsListComponent,
+    PanelFileComponent
     /* Other componet*/
   ],
   exports: [
@@ -25,6 +27,7 @@ import { ModalDownloadsListComponent } from './modal-downloads-list/modal-downlo
     PanelDownloadsComponent,
     PanelAboutComponent,
     ModalDownloadsListComponent,
+    PanelFileComponent
     /*Other componet*/
   ],
 })

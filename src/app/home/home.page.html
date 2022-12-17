@@ -20,7 +20,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment class="navigation-of-translator" value="language" [(ngModel)]="selected">
+  <ion-segment class="navigation-of-translator" value="file" [(ngModel)]="selected">
+    <ion-segment-button value="file">
+      <p>File</p>
+    </ion-segment-button>
     <ion-segment-button value="language">
       <p>Language</p>
     </ion-segment-button>
