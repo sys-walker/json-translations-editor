@@ -9,8 +9,8 @@ describe('PanelDownloadsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PanelDownloadsComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [PanelDownloadsComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PanelDownloadsComponent);

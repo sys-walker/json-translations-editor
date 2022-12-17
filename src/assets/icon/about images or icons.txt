@@ -1,0 +1,19 @@
+Icon free (No atribution required)
+https://uxwing.com/
+
+PNG 2 SVG
+https://convertio.co/es/png-svg/
+
+Icons must be converted to svg
+For Light mode #000000
+For Dark  mode #e1e1e1
+
+For switching darkmode names must follow this pattern
+
+<Name of icon>.svg
+<Name of icon>-dark.svg
+
+example
+
+- myicon.svg
+- myicon-dark.svg

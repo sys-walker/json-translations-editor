@@ -6,18 +6,13 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public darkmode: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public dark: boolean=false;
-  constructor() {
-    
-
-  }
+  public dark: boolean = false;
+  constructor() {}
   ngOnInit(): void {
-
-    this.darkmode.subscribe((enable)=>{
-      this.dark= enable;
-
-    });  }
-
+    this.darkmode.subscribe((enable) => {
+      this.dark = enable;
+    });
+  }
 }

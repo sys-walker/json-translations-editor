@@ -9,8 +9,8 @@ describe('PanelLanguageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PanelLanguageComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [PanelLanguageComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PanelLanguageComponent);

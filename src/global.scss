@@ -27,3 +27,32 @@
 
 
 @import "./../src/app/home/segments.scss";
+
+
+/* Global css for each panel and option*/
+.container-panel{
+    display: flex;
+    //scroll
+    overflow: auto;
+    white-space: nowrap;
+}
+.panel-option:first-child{
+    padding-inline-start:0.5em;
+    padding-inline-end:0.5em;
+    border-right: 1px solid green;
+}
+.panel-option{
+    padding-inline-start:0.5em;
+    padding-inline-end:0.5em;
+    border-right: 1px solid green;
+    p{
+        font-size: 1em;
+        margin: 0;
+        text-transform: uppercase;
+    }
+}
+.slot-vertical{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}

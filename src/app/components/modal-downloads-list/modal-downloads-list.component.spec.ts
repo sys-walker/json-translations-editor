@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PanelAboutComponent } from './panel-about.component';
+import { ModalDownloadsListComponent } from './modal-downloads-list.component';
 
-describe('PanelAboutComponent', () => {
-  let component: PanelAboutComponent;
-  let fixture: ComponentFixture<PanelAboutComponent>;
+describe('ModalDownloadsListComponent', () => {
+  let component: ModalDownloadsListComponent;
+  let fixture: ComponentFixture<ModalDownloadsListComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [PanelAboutComponent],
+      declarations: [ModalDownloadsListComponent],
       imports: [IonicModule.forRoot()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PanelAboutComponent);
+    fixture = TestBed.createComponent(ModalDownloadsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

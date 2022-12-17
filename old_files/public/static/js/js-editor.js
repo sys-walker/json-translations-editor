@@ -347,6 +347,8 @@ function download_zip_of_languages() {
   if (translatorKeys.length === 0) {
     return;
   }
+  console.log(translatorLanguages);
+  console.log(translatorKeys);
 
   let zip = new JSZip();
   translatorLanguages.forEach((locale) => {

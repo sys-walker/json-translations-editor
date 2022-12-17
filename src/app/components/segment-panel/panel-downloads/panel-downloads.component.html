@@ -1,3 +1,39 @@
-<p>
-  panel-downloads works!
-</p>
+<div class="container-panel">
+  <div class="panel-option">
+    <p>Generate files</p>
+    <div class="slot-vertical">
+      <ion-button fill="clear" *ngIf="dark" (click)="openDownloadList()">
+        <ion-icon slot="start" src="assets/icon/file-download-icon-dark.svg"></ion-icon>
+        download file
+      </ion-button>
+      <ion-button fill="clear" *ngIf="!dark" (click)="openDownloadList()">
+        <ion-icon slot="start" src="assets/icon/file-download-icon.svg"></ion-icon>
+        download file
+      </ion-button>
+
+      <ion-button fill="clear" *ngIf="dark" (click)="sendDownloadEvent()">
+        <ion-icon slot="start" src="assets/icon/download-zip-icon-dark.svg"></ion-icon>
+        download all
+      </ion-button>
+      <ion-button fill="clear" *ngIf="!dark" (click)="sendDownloadEvent()">
+        <ion-icon slot="start" src="assets/icon/download-zip-icon.svg"></ion-icon>
+        download all
+      </ion-button>
+    </div>
+  </div>
+  <div class="panel-option">
+    <p>JSON structure</p>
+
+    <ion-radio-group value="true" (ionChange)="radioGroupChange($event)">
+      <ion-item>
+        <ion-label>Flatered</ion-label>
+        <ion-radio slot="end" value="true"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Unflattered</ion-label>
+        <ion-radio slot="end" value="false"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>

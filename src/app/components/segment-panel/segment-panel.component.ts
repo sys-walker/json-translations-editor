@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
-
 @Component({
   selector: 'app-segments-panels',
   templateUrl: './segment-panel.component.html',

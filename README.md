@@ -70,6 +70,8 @@ This project is licensed under the [MIT License](LICENSE) - see the [LICENSE.md]
 
 ## Acknowledgments
 
+### Eventbus
+  - [luixaviles](https://github.com/luixaviles)
 ### Boostrap creators
   - [Mark Otto](https://github.com/mdo)
   - [Jacob Thornton](https://github.com/fat)

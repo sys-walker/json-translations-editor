@@ -1,46 +1,21 @@
 <div class="container-panel">
-  <div class="panel-option" >
+  <div class="panel-option">
     <p>Add Language</p>
-    <ion-input placeholder="New language"[value]="languageInput" (input)="setLanguageToAdd($event)"></ion-input>
-    <div class="slot-vertical" >
+    <ion-input placeholder="New language" [value]="languageInput" (input)="setLanguageToAdd($event)"></ion-input>
+    <div class="slot-vertical">
       <ion-button size="small" color="success" (click)="sendAddLanguage()">add</ion-button>
-      <ion-button size="small"(click)="sendAddTranslation()">Add translation</ion-button>
-      
+      <ion-button size="small" (click)="sendAddTranslation()">Add translation</ion-button>
     </div>
   </div>
-  <div class="panel-option" >
+  <div class="panel-option">
     <p>Remove Language</p>
 
-        <ion-select interface="popover" placeholder="{{selectPlaceholder}}" [(ngModel)]="languageToRemove">
-          <ion-select-option  *ngFor="let v of theLanguagesArray" value="{{v}}">{{v}}</ion-select-option>
-        </ion-select>
+    <ion-select interface="popover" placeholder="{{ selectPlaceholder }}" [(ngModel)]="languageToRemove">
+      <ion-select-option *ngFor="let v of theLanguagesArray" value="{{ v }}">{{ v }}</ion-select-option>
+    </ion-select>
 
-        
-    <div class="slot-vertical" >
+    <div class="slot-vertical">
       <ion-button size="small" color="danger" (click)="sendRemoveLanguage()">Remove</ion-button>
-      
     </div>
   </div>
-
-
 </div>
-
-
-
-<!--
-<label for="cars">Choose a car:</label>
-
-<select name="cars" id="cars">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select>
-LANGUAGE PANEL
-<ion-button (click)="sendEvent()">Default</ion-button>
-<ion-button (click)="sendEvent2()">Remove Column</ion-button>
-<ion-button (click)="sendEvent3()">Add Trnalstion</ion-button>
-
-
-
--->
