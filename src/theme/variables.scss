@@ -92,6 +92,20 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+  /** grey boostrap */
+  --ion-color-grey-boostrap: #6c757d;
+	--ion-color-grey-boostrap-rgb: 108,117,125;
+	--ion-color-grey-boostrap-contrast: #ffffff;
+	--ion-color-grey-boostrap-contrast-rgb: 255,255,255;
+	--ion-color-grey-boostrap-shade: #5f676e;
+	--ion-color-grey-boostrap-tint: #7b838a;
+  /** stripped table*/
+  --ion-color-stripped: #f3f2f3;
+	--ion-color-stripped-rgb: 243,242,243;
+	--ion-color-stripped-contrast: #000000;
+	--ion-color-stripped-contrast-rgb: 0,0,0;
+	--ion-color-stripped-shade: #d6d5d6;
+	--ion-color-stripped-tint: #f4f3f4;
 }
 
 
@@ -145,6 +159,23 @@
   --ion-color-facebook-tint: #4f6aa2;
 }
 
+.ion-color-stripped {
+	--ion-color-base: var(--ion-color-stripped);
+	--ion-color-base-rgb: var(--ion-color-stripped-rgb);
+	--ion-color-contrast: var(--ion-color-stripped-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-stripped-contrast-rgb);
+	--ion-color-shade: var(--ion-color-stripped-shade);
+	--ion-color-tint: var(--ion-color-stripped-tint);
+}
+
+.ion-color-grey-boostrap {
+	--ion-color-base: var(--ion-color-grey-boostrap);
+	--ion-color-base-rgb: var(--ion-color-grey-boostrap-rgb);
+	--ion-color-contrast: var(--ion-color-grey-boostrap-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-grey-boostrap-contrast-rgb);
+	--ion-color-shade: var(--ion-color-grey-boostrap-shade);
+	--ion-color-tint: var(--ion-color-grey-boostrap-tint);
+}
 .ion-color-favorite {
   --ion-color-base: var(--ion-color-favorite);
   --ion-color-base-rgb: var(--ion-color-favorite-rgb);
@@ -238,6 +269,9 @@
   --ion-color-food: #3bc7c4;
   --ion-color-documentation: #b16be3;
   --ion-color-navigation: #6600cc;
+
+
+  
 }
 
 /*
@@ -336,6 +370,14 @@
   --ion-color-light-contrast-rgb: 255,255,255;
   --ion-color-light-shade: #1e2023;
   --ion-color-light-tint: #383a3e;
+
+  /** striped dark*/
+  --ion-color-stripped: #2d2d2d;
+	--ion-color-stripped-rgb: 45,45,45;
+	--ion-color-stripped-contrast: #ffffff;
+	--ion-color-stripped-contrast-rgb: 255,255,255;
+	--ion-color-stripped-shade: #282828;
+	--ion-color-stripped-tint: #424242;
 }
 
 /*

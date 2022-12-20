@@ -2,20 +2,20 @@
   <div class="panel-option">
     <p>Generate files</p>
     <div class="slot-vertical">
-      <ion-button fill="clear" *ngIf="dark" (click)="openDownloadList()">
+      <ion-button fill="clear" *ngIf="dark" (click)="sendDownloadEvent()">
         <ion-icon slot="start" src="assets/icon/file-download-icon-dark.svg"></ion-icon>
         download file
       </ion-button>
-      <ion-button fill="clear" *ngIf="!dark" (click)="openDownloadList()">
+      <ion-button fill="clear" *ngIf="!dark" (click)="sendDownloadEvent()">
         <ion-icon slot="start" src="assets/icon/file-download-icon.svg"></ion-icon>
         download file
       </ion-button>
 
-      <ion-button fill="clear" *ngIf="dark" (click)="sendDownloadEvent()">
+      <ion-button fill="clear" *ngIf="dark" (click)="sendDownloadZipEvent()">
         <ion-icon slot="start" src="assets/icon/download-zip-icon-dark.svg"></ion-icon>
         download all
       </ion-button>
-      <ion-button fill="clear" *ngIf="!dark" (click)="sendDownloadEvent()">
+      <ion-button fill="clear" *ngIf="!dark" (click)="sendDownloadZipEvent()">
         <ion-icon slot="start" src="assets/icon/download-zip-icon.svg"></ion-icon>
         download all
       </ion-button>

@@ -44,6 +44,6 @@ div {
   }
 
   tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: var(--ion-color-stripped);
   }
 }

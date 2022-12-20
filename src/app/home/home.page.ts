@@ -1,7 +1,7 @@
 import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AppComponent } from '../app.component';
-import { IAddLanguageEv, IAddTranslationEv, IGetTranslationsEv, IRemoveLangEv, IRetTranslationsTableEv, ITranslatorEvent } from '../interfaces';
+import { IAddLanguageEv, IAddTranslationEv, IGetTranslationsEv, IRemoveLangEv, IRetTranslationsTableEv } from '../interfaces';
 import { EventBus, Registry } from '../services/EventBus/event-bus';
 
 const TAG = 'HomePage';
@@ -35,12 +35,7 @@ export class HomePage implements OnInit,OnDestroy{
 
 
   constructor(private AppMain: AppComponent) {
-    /*this.sharedEv.event.subscribe((res: ITranslatorEvent) => {
-      this.manageEvent(res);
-    });*/
-    /*this.sharedEv.getSubject().subscribe((res: ITranslatorEvent) => {
-      this.manageEvent(res);
-    });*/
+
   }
   ngOnInit(): void {
     this.addLanguageListener = EventBus.getInstance().register(
@@ -64,7 +59,7 @@ export class HomePage implements OnInit,OnDestroy{
     this.downloadRequestListener= EventBus.getInstance().register(
       'IGetTranslationsEv',
       (message: IGetTranslationsEv) => {
-        this.getCurrentTranslations();
+        this.getCurrentTranslations(message);
       }
     );
   
@@ -74,7 +69,7 @@ export class HomePage implements OnInit,OnDestroy{
     
   }
 
-  getCurrentTranslations() {
+  getCurrentTranslations(message: IGetTranslationsEv) {
     let tbody: HTMLTableElement = this.someInput.nativeElement;
     let ionInputs = Array.from(tbody.getElementsByTagName('ion-input'));
 
@@ -103,7 +98,7 @@ export class HomePage implements OnInit,OnDestroy{
       languages: locales,
       keys: keysT,
       values: valuesT,
-      completed: false,
+      zip: message.zip,
     };
     console.debug(`Sent data to EventBus`, data);
     EventBus.getInstance().dispatch("IRetTranslationsTableEv",data)
