@@ -10,13 +10,15 @@ export interface IRemoveLangEv extends ITranslatorEvent {
 }
 export interface IAddTranslationEv extends ITranslatorEvent {}
 
-export interface IGetTranslationsEv extends ITranslatorEvent {}
+export interface IGetTranslationsEv extends ITranslatorEvent {
+  zip: boolean;
+}
 
 export interface IRetTranslationsTableEv extends ITranslatorEvent {
   languages: string[];
   keys: string[];
   values: string[][];
-  completed?: boolean;
+  zip: boolean;
 }
 
 export class FormatedJSON {
