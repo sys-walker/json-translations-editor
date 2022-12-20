@@ -80,4 +80,15 @@ export class FormatedJSON {
     //@ts-ignore
     return Object.unflatten(nestedJSON);
   }
+  static text2json(a:string | ArrayBuffer | null){
+    let s:string =""
+    if (typeof a === 'string') {
+      s=a?.toString();
+    } else if (a instanceof ArrayBuffer) {
+      s=a!!.toString()
+    } else {} 
+  
+    return JSON.parse(s);
+  }
+
 }
