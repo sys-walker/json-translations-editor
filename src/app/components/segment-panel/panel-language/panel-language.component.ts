@@ -44,6 +44,7 @@ export class PanelLanguageComponent implements OnInit {
     };
     console.debug(`Sent data to EventBus`, data);
     EventBus.getInstance().dispatch("IAddLanguageEv",data)
+    this.languageInput = '';
   }
 
   protected sendRemoveLanguage() {

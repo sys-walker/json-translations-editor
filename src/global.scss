@@ -27,9 +27,19 @@
 
 
 @import "./../src/app/home/segments.scss";
+@import './assets/fonts/IBM_Plex_Sans/IBMPlexSans_font.scss';
 
+/* Font style */
+* {
+  font-family: 'IBM Plex Sans', sans-serif !important;
+}
 
 /* Global css for each panel and option*/
+.panel {
+    //--bs-light-rgb: 248, 249, 250;
+    background-color: var(--ion-color-panel);
+}
+
 .container-panel{
     display: flex;
     //scroll
@@ -39,16 +49,18 @@
 .panel-option:first-child{
     padding-inline-start:0.5em;
     padding-inline-end:0.5em;
-    border-right: 1px solid green;
+    border-right: 1px solid #dddddd;
 }
 .panel-option{
     padding-inline-start:0.5em;
     padding-inline-end:0.5em;
-    border-right: 1px solid green;
-    p{
-        font-size: 1em;
+    border-right: 1px solid #dddddd;
+    p.option-title{
+        font-size: 14px;
+        font-weight: bolder;
         margin: 0;
         text-transform: uppercase;
+        text-align: center;
     }
 }
 .slot-vertical{

@@ -21,7 +21,7 @@
 
 <ion-content>
   <ion-segment class="navigation-of-translator" value="language" [(ngModel)]="selected">
-    <ion-segment-button value="language">
+    <ion-segment-button value="language" >
       <p>Language</p>
     </ion-segment-button>
     <ion-segment-button value="downloads">
@@ -33,41 +33,33 @@
   </ion-segment>
   <app-segments-panels [panelName]="selected"></app-segments-panels>
 
-  <!--
-  <ion-grid>
-  <ion-row>
-    <ion-col size="auto"></ion-col>
-    <ion-col *ngFor="let v of theArrayHeaders"> {{v}}</ion-col>
-  </ion-row>
 
 
-  <ion-row *ngFor="let _ of theArray; let i = index"  style="border: 1px solid red;">
-    <ion-col size="auto" style="border: 1px solid blue;"><ion-button size="small" color="danger" (click)="deleteRow(i)">X</ion-button></ion-col>
-    <ion-col *ngFor="let _ of theArray[i]; let j = index" [innerHTML]="theArray[i][j] | safeHTML"> </ion-col>
-  </ion-row>
-</ion-grid>
+<style>
+  div.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+  }
+</style>
 
 
-
--->
-
-  <div>
+  <div class="scrollmenu">
     <table>
       <thead>
         <tr>
-          <th></th>
-          <th *ngFor="let v of theArrayHeaders">{{v}}</th>
+          <th class="first-column"></th>
+          <th class="other-column"  *ngFor="let v of theArrayHeaders">{{v}}</th>
         </tr>
       </thead>
 
       <tbody id="someInput" #someInput>
-        <tr *ngFor="let _ of theArray; let i = index" style="border: 1px solid red">
-          <td>
+        <tr *ngFor="let _ of theArray; let i = index">
+          <td class="first-column">
             <ion-button size="small" color="danger" (click)="deleteRow(i)">X</ion-button>
           </td>
           <td
-            class="ionic-input"
-            style="width: 25vw"
+            class="ionic-input other-column"
+            style="min-width: 120px;"
             *ngFor="let _ of theArray[i]; let j = index"
             [innerHTML]="theArray[i][j] | safeHTML"
           ></td>
@@ -75,4 +67,8 @@
       </tbody>
     </table>
   </div>
+
+
+
+
 </ion-content>
