@@ -1,6 +1,6 @@
 <div class="container-panel">
   <div class="panel-option">
-    <p>Add Language</p>
+    <p class="option-title">Add Language</p>
     <ion-input placeholder="New language" [value]="languageInput" (input)="setLanguageToAdd($event)"></ion-input>
     <div class="slot-vertical">
       <ion-button size="small" color="success" (click)="sendAddLanguage()">add</ion-button>
@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="panel-option">
-    <p>Remove Language</p>
+    <p class="option-title">Remove Language</p>
 
     <ion-select interface="popover" placeholder="{{ selectPlaceholder }}" [(ngModel)]="languageToRemove">
       <ion-select-option *ngFor="let v of theLanguagesArray" value="{{ v }}">{{ v }}</ion-select-option>
