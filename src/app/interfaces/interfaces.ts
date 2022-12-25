@@ -23,7 +23,6 @@ export interface IRetTranslationsTableEv extends ITranslatorEvent {
 
 export class FormatedJSON {
   //Functions to flat or unflat JSON
-  //npm install --save core-js (polyfills.ts)
   //https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-javascript-objects#:~:text=Flatten%20a%20JSON%20object%3A,))%20%7B%20var%20length%20%3D%20table.
   static flatten(flatJSON: object) {
     //@ts-ignore
