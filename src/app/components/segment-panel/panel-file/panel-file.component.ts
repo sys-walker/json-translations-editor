@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilePicker } from '@capawesome/capacitor-file-picker';
-import { FormatedJSON } from 'src/app/interfaces';
+import { FormatedJSON } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'panel-file',
