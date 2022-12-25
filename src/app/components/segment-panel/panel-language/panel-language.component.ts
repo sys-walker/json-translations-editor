@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomePage } from 'src/app/home/home.page';
-import { IAddTranslationEv, IAddLanguageEv, IRemoveLangEv } from 'src/app/interfaces';
+import { IAddTranslationEv, IAddLanguageEv, IRemoveLangEv } from 'src/app/interfaces/interfaces';
 import { EventBus } from 'src/app/services/EventBus/event-bus';
 const TAG = 'PanelLanguageComponent::';
 const NO_LANG = 'No languages available';
