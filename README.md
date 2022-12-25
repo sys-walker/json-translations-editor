@@ -14,6 +14,31 @@ A simple editor for @ngx-translate/core library  written in HTML, JS, Boostrap.
 
 
 ### For development
+**Important!**
+to work with `ionic serve`  approaching live reload you must change baseHref to `"baseHref": "/"`
+
+for publish
+
+    "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            ...
+            "baseHref": "/json-translations-editor/",
+            ...
+          }
+          ...
+for development with live reload
+
+    "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            ...
+            "baseHref": "/",
+            ...
+          }
+          ...
 **Prerequisites**
 Requirements for the software and other tools to build, test and push 
 - A code editor like [Vscode ](https://code.visualstudio.com/) or similar 
