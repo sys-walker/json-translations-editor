@@ -12,7 +12,8 @@
     "lint": "ng lint",
     "pretty-check": "npx prettier --check ./src/app",
     "pretty-write": "npx prettier --write ./src/app",
-    "deploy:production": "echo 'Not implememnted yet'"
+    "deploy:production": "ionic build && rm -rfv docs/* && cp -rv www/* docs/",
+    "deploy:manteinance-mode": "rm -rfv docs/* && echo \"<!DOCTYPE html><html><style>body, html {height: 100%;margin: 0;}.bottomleft {position: absolute;bottom: 0;left: 16px;}.middle {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);text-align: center;}hr {mrgin: auto;width: 40%;}</style><body><div><div class='middle'><h1>IN MAINTENANCE MODE</h1><hr><p>I'm working for a awesome update or fixing an important issue (Sorry for the inconvenience)</p></div></div></body></html>\" > index.html && mv index.html docs/"
   },
   "private": true,
   "dependencies": {

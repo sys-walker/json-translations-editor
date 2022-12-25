@@ -1,7 +1,7 @@
 import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AppComponent } from '../app.component';
-import { IAddLanguageEv, IAddTranslationEv, IGetTranslationsEv, IRemoveLangEv, IRetTranslationsTableEv } from '../interfaces';
+import { IAddLanguageEv, IAddTranslationEv, IGetTranslationsEv, IRemoveLangEv, IRetTranslationsTableEv } from '../interfaces/interfaces';
 import { EventBus, Registry } from '../services/EventBus/event-bus';
 
 const TAG = 'HomePage';

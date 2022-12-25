@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { AppComponent } from 'src/app/app.component';
-import { FormatedJSON, IGetTranslationsEv, IRetTranslationsTableEv, ITranslatorEvent } from 'src/app/interfaces';
+import { FormatedJSON, IGetTranslationsEv, IRetTranslationsTableEv, ITranslatorEvent } from 'src/app/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { ModalDownloadsListComponent } from '../../modal-downloads-list/modal-downloads-list.component';
 import { Subscription, take } from 'rxjs';
