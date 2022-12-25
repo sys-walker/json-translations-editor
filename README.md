@@ -10,7 +10,7 @@ A simple editor for @ngx-translate/core library  written in HTML, JS, Boostrap.
 
 - :white_check_mark: **online**:  [JSON translation web](https://sys-walker.github.io/json-translations-editor/) 
 - :white_check_mark: **offline v1**:  clone the repository then place elements of /public inside your webserver like `python3 -m http.server`
-- :red_circle: **offline v2**: Download the bundle file translator
+- :red_circle: **offline v2**: Download the bundle file translator [Not available]
 
 
 ### For development
@@ -38,13 +38,19 @@ Run automatic code formatter
 The code is placed in the folder `docs/`
 
 ## Deployment
+To deploy code and place to `docs/` and making available for github page
 
-Add additional notes to deploy this on a live system
+    npm run deploy:production
+
+To enable maintenance mode for github page
+
+    npm run deploy:manteinance-mode
+
+
 
 ## Built With
-
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
+  - [Ionic Frameowrk](https://ionicframework.com/) - Used for the editor
+  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used for the Code of Conduct
   - [Github pages](https://pages.github.com/) - Used to host and deploy  the web-app online
 
 ## Contributing
@@ -70,12 +76,12 @@ This project is licensed under the [MIT License](LICENSE) - see the [LICENSE.md]
 
 ## Acknowledgments
 
-### Eventbus
-  - [luixaviles](https://github.com/luixaviles)
-### Boostrap creators
+#### Eventbus implementation
+  - [Luixaviles](https://github.com/luixaviles) - *For events management in the editor*
+#### Boostrap creators
   - [Mark Otto](https://github.com/mdo)
   - [Jacob Thornton](https://github.com/fat)
     
 
-### Boostrap darkmode
-  - [Vino Rodrigues](https://github.com/vinorodrigues) - *CSS dark-mode used in the  'JSON Translations Editor'* - [bootstrap-dark-5](https://github.com/vinorodrigues/bootstrap-dark-5)
+#### Boostrap darkmode
+  - [Vino Rodrigues](https://github.com/vinorodrigues) - *CSS dark-mode used in the  'JSON Translations Editor' (in `old-files/`)* - [bootstrap-dark-5](https://github.com/vinorodrigues/bootstrap-dark-5)
