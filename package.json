@@ -1,8 +1,8 @@
 {
   "name": "json-translations-editor-angular",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Syswalker",
+  "homepage": "https://sys-walker.github.io/json-translations-editor/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
