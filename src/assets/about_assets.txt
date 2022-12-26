@@ -1,0 +1,33 @@
+Icon free (No atribution required)
+https://uxwing.com/
+
+Ionic Icons (already svg, cannot customize color)
+https://ionic.io/ionicons
+
+PNG 2 SVG
+https://convertio.co/es/png-svg/
+
+About icons:
+- Icons from uxwing must be donwloaded in order to be able to change every SVG element's color.
+- Must convert png to SVG
+- Change each svg's atribute [fill="#HexColor"] to your desired color (must have 2 icons, one for dark and other light)
+- Icons must follow the old pattern in order to have a covention
+    * <Name of icon>.svg
+    * <Name of icon>-dark.svg
+
+colors example
+For Light mode #000000 
+For Dark  mode #e1e1e1 
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+To create new colors in ionic
+https://ionicframework.com/docs/theming/colors
+
+- create color in generator
+- copy the :root{ ... } and place variables in light theme, also copy .ion-color-NEWCOLOR{ ... }
+
+- create color in generator, but then copy only the varibale inside of  :root{ } and just place into dark theme, dont copy the .ion-color-NEWCOLOR{ ... }
+
+Keep the same name for the color in dark and light theme! It just changes the hex value
+with this you will be able to use your new color in the ionic element's atribute color (ex:  <ion-button color="NEWCOLOR" ></ion-button>)
