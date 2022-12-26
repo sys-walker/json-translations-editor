@@ -1,17 +1,26 @@
 import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { IAddLanguageEv, IAddTranslationEv, IGetTranslationsEv, IRemoveLangEv, IRetTranslationsTableEv, IUploadFile } from '../interfaces/interfaces';
+import {
+  IAddLanguageEv,
+  IAddTranslationEv,
+  IGetCurrentLangs,
+  IGetTranslationsEv,
+  IRemoveLangEv,
+  IRetCurrentLangs,
+  IRetTranslationsTableEv,
+  IUploadFile,
+} from '../interfaces/interfaces';
 import { EventBus, Registry } from '../services/EventBus/event-bus';
 
 const TAG = 'HomePage';
 
-export const INPUT_ELEMENT_EMPTY ='<ion-input style="width: 100%;"></ion-input>';
+export const INPUT_ELEMENT_EMPTY = '<ion-input style="width: 100%;"></ion-input>';
 
-export function INPUT_ELEMENT(value:string){
-  if(!value){
+export function INPUT_ELEMENT(value: string) {
+  if (!value) {
     throw new Error('Must provide value.');
   }
-  return `<ion-input style="width: 100%;" value="${value}"></ion-input>`
+  return `<ion-input style="width: 100%;" value="${value}"></ion-input>`;
 }
 
 @Component({
@@ -19,69 +28,94 @@ export function INPUT_ELEMENT(value:string){
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-
-export class HomePage implements OnInit,OnDestroy{
-
+export class HomePage implements OnInit, OnDestroy {
   @ViewChild('someInput') someInput!: ElementRef;
   dark: boolean = false;
   selected: string = 'file';
   theArrayHeaders = ['Key', 'en'];
   theArray = [
-    [INPUT_ELEMENT("hello_world"), INPUT_ELEMENT("Hello World!")],
+    [INPUT_ELEMENT('hello_world'), INPUT_ELEMENT('Hello world!')],
     [INPUT_ELEMENT_EMPTY, INPUT_ELEMENT_EMPTY],
   ];
   numCols = this.theArray[0].length;
   numRows = this.theArray.length;
   //@ts-ignore
-  addLanguageListener:Registry;
+  addLanguageListener: Registry;
   //@ts-ignore
-  addRowListener:Registry;
+  addRowListener: Registry;
   //@ts-ignore
-  removeLanguageListener:Registry;
+  removeLanguageListener: Registry;
   //@ts-ignore
-  downloadRequestListener:Registry;
+  downloadRequestListener: Registry;
   //@ts-ignore
-  uploadTableListener:Registry;
+  uploadTableListener: Registry;
+  //@ts-ignore
+  requestLanguagesListener: Registry;
 
-  constructor(private AppMain: AppComponent) {
+  constructor(private AppMain: AppComponent) {}
+
+  ionViewDidEnter() {
+    const slider: HTMLElement = document.querySelector('.draggable');
+    let mouseDown = false;
+    let startX, scrollLeft;
+
+    let startDragging = function (e) {
+      mouseDown = true;
+      //@ts-ignore
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    };
+    let stopDragging = function (event) {
+      mouseDown = false;
+    };
+
+    slider.addEventListener('mousemove', (e) => {
+      e.preventDefault();
+      if (!mouseDown) {
+        return;
+      }
+      //@ts-ignore
+      const x = e.pageX - slider.offsetLeft;
+      const scroll = x - startX;
+      slider.scrollLeft = scrollLeft - scroll;
+    });
+
+    // Add the event listeners
+    slider.addEventListener('mousedown', startDragging, false);
+    slider.addEventListener('mouseup', stopDragging, false);
+    slider.addEventListener('mouseleave', stopDragging, false);
   }
+
   ngOnInit(): void {
-    this.addLanguageListener = EventBus.getInstance().register(
-      'IAddLanguageEv',
-      (message: IAddLanguageEv) => {
-        this.addLanguage(<IAddLanguageEv>message);
-      }
-    );
-    this.addRowListener = EventBus.getInstance().register(
-      'IAddTranslationEv',
-      (message: IAddTranslationEv) => {
-        this.addTranslation();
-      }
-    );
-    this.removeLanguageListener= EventBus.getInstance().register(
-      'IRemoveLangEv',
-      (message: IRemoveLangEv) => {
-        this.removeLanguage(<IRemoveLangEv>message);
-      }
-    );
-    this.downloadRequestListener= EventBus.getInstance().register(
+    this.addLanguageListener = EventBus.getInstance().register('IAddLanguageEv', (message: IAddLanguageEv) => {
+      this.addLanguage(<IAddLanguageEv>message);
+    });
+    this.addRowListener = EventBus.getInstance().register('IAddTranslationEv', (message: IAddTranslationEv) => {
+      this.addTranslation();
+    });
+    this.removeLanguageListener = EventBus.getInstance().register('IRemoveLangEv', (message: IRemoveLangEv) => {
+      this.removeLanguage(<IRemoveLangEv>message);
+    });
+    this.downloadRequestListener = EventBus.getInstance().register(
       'IGetTranslationsEv',
       (message: IGetTranslationsEv) => {
         this.getCurrentTranslations(message);
       }
     );
-    this.uploadTableListener = EventBus.getInstance().register('IUploadFile',(message: IUploadFile) => {
-      console.log(message);
+    this.uploadTableListener = EventBus.getInstance().register('IUploadFile', (message: IUploadFile) => {
       this.theArrayHeaders = message.headers;
       this.theArray = message.table;
-      
-    })
-  
+    });
+    this.requestLanguagesListener = EventBus.getInstance().register('IGetCurrentLangs', (message: IGetCurrentLangs) => {
+      let data: IRetCurrentLangs = {
+        name: 'IRetCurrentLangs',
+        headers: this.theArrayHeaders,
+      };
+      EventBus.getInstance().dispatch('IRetCurrentLangs', data);
+    });
   }
 
-  ngOnDestroy(): void {
-    
-  }
+  ngOnDestroy(): void {}
 
   getCurrentTranslations(message: IGetTranslationsEv) {
     let tbody: HTMLTableElement = this.someInput.nativeElement;
@@ -115,8 +149,7 @@ export class HomePage implements OnInit,OnDestroy{
       zip: message.zip,
     };
     console.debug(`Sent data to EventBus`, data);
-    EventBus.getInstance().dispatch("IRetTranslationsTableEv",data)
-  
+    EventBus.getInstance().dispatch('IRetTranslationsTableEv', data);
   }
   getTranslationTable(theArray: string[][]) {
     //throw new Error('Method not implemented.');
@@ -139,7 +172,6 @@ export class HomePage implements OnInit,OnDestroy{
     this.numCols = this.theArrayHeaders.length;
     let newRow = Array(this.numCols).fill(INPUT_ELEMENT_EMPTY, 0, this.numCols);
     this.theArray.push(newRow);
-    
   }
   removeLanguage(res: IRemoveLangEv) {
     let idx = this.theArrayHeaders.indexOf(res.lang);
@@ -155,7 +187,7 @@ export class HomePage implements OnInit,OnDestroy{
   addLanguage(res: IAddLanguageEv) {
     this.numCols = this.theArray[0].length;
     this.theArrayHeaders.push(res.lang);
-    this.theArray.map((r:string[]) => {
+    this.theArray.map((r: string[]) => {
       r.push(INPUT_ELEMENT_EMPTY);
     });
   }

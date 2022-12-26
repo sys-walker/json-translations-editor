@@ -9,8 +9,8 @@ describe('PanelFileComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PanelFileComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [PanelFileComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PanelFileComponent);

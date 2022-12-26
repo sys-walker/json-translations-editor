@@ -21,10 +21,13 @@ export interface IRetTranslationsTableEv extends ITranslatorEvent {
   zip: boolean;
 }
 export interface IUploadFile extends ITranslatorEvent {
-  headers:string[];
+  headers: string[];
   table: string[][];
 }
-
+export interface IGetCurrentLangs extends ITranslatorEvent {}
+export interface IRetCurrentLangs extends ITranslatorEvent {
+  headers: string[];
+}
 export class FormatedJSON {
   //Functions to flat or unflat JSON
   //https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-javascript-objects#:~:text=Flatten%20a%20JSON%20object%3A,))%20%7B%20var%20length%20%3D%20table.
@@ -83,15 +86,15 @@ export class FormatedJSON {
     //@ts-ignore
     return Object.unflatten(nestedJSON);
   }
-  static text2json(a:string | ArrayBuffer | null){
-    let s:string =""
+  static text2json(a: string | ArrayBuffer | null) {
+    let s: string = '';
     if (typeof a === 'string') {
-      s=a?.toString();
+      s = a?.toString();
     } else if (a instanceof ArrayBuffer) {
-      s=a!!.toString()
-    } else {} 
-  
+      s = a!!.toString();
+    } else {
+    }
+
     return JSON.parse(s);
   }
-
 }

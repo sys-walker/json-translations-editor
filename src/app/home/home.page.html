@@ -36,12 +36,12 @@
   </ion-segment>
   <app-segments-panels [panelName]="selected"></app-segments-panels>
 
-  <div>
+  <div class="ion-padding draggable">
     <table>
       <thead>
         <tr>
           <th class="first-column"></th>
-          <th class="other-column"  *ngFor="let v of theArrayHeaders">{{v}}</th>
+          <th class="other-column" *ngFor="let v of theArrayHeaders">{{v}}</th>
         </tr>
       </thead>
 
@@ -52,7 +52,7 @@
           </td>
           <td
             class="ionic-input other-column"
-            style="min-width: 120px;"
+            style="min-width: 120px"
             *ngFor="let _ of theArray[i]; let j = index"
             [innerHTML]="theArray[i][j] | safeHTML"
           ></td>

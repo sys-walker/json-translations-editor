@@ -27,35 +27,42 @@ ion-toggle.custom-switch {
 }
 //////////////////////////////////////////////////////////////////////////
 div {
-  margin-top: 12px;
-  overflow: auto;
+  //Ion-padding
+  padding-left: unset;
+  padding-right: unset;
+  padding-inline-start: var(--ion-padding, 16px);
+  padding-inline-end: var(--ion-padding, 16px);
+
+  margin-top: 0px;
+  overflow: hidden;
   white-space: nowrap;
+
+  //Cursor grab
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+
   table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
 
-    .first-column{
+    .first-column {
       min-width: 40px;
     }
-    .other-column{
+    .other-column {
       min-width: 25vw;
     }
 
-
-
-
-    td,th {
+    td,
+    th {
       border: 1px solid #dddddd;
       text-align: left;
       padding: 8px;
     }
-  
+
     tr:nth-child(even) {
       background-color: var(--ion-color-stripped);
     }
   }
-
-
-
-  
 }

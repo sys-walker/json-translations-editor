@@ -24,14 +24,14 @@
   <div class="panel-option">
     <p class="option-title">JSON structure</p>
 
-    <ion-radio-group value="true" color="panel"  (ionChange)="radioGroupChange($event)">
-      <ion-item color="panel" >
-        <ion-label>Flatered</ion-label>
+    <ion-radio-group value="true" color="panel" (ionChange)="radioGroupChange($event)">
+      <ion-item color="panel">
+        <ion-label>Flat schema</ion-label>
         <ion-radio slot="end" value="true"></ion-radio>
       </ion-item>
 
-      <ion-item color="panel" >
-        <ion-label>Unflattered</ion-label>
+      <ion-item color="panel">
+        <ion-label>Nested schema</ion-label>
         <ion-radio slot="end" value="false"></ion-radio>
       </ion-item>
     </ion-radio-group>

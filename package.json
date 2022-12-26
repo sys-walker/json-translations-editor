@@ -34,6 +34,7 @@
     "@ionic/angular": "^6.1.9",
     "angular-cli-ghpages": "^1.0.5",
     "file-saver": "^2.0.5",
+    "html-escaper": "^3.0.3",
     "ionicons": "^6.0.3",
     "jszip": "^3.10.1",
     "prettier": "^2.8.0",

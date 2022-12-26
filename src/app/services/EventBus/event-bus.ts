@@ -33,14 +33,13 @@ export class EventBus implements IEventBus {
   }
 
   public dispatch<T>(event: string, arg?: T): void {
-    
     const subscriber = this.subscribers[event];
 
     if (subscriber === undefined) {
       return;
     }
 
-    Object.keys(subscriber).forEach(key => subscriber[key](arg));
+    Object.keys(subscriber).forEach((key) => subscriber[key](arg));
   }
 
   public register(event: string, callback: Function): Registry {
@@ -52,9 +51,8 @@ export class EventBus implements IEventBus {
     return {
       unregister: () => {
         delete this.subscribers[event][id];
-        if (Object.keys(this.subscribers[event]).length === 0)
-          delete this.subscribers[event];
-      }
+        if (Object.keys(this.subscribers[event]).length === 0) delete this.subscribers[event];
+      },
     };
   }
 
@@ -62,4 +60,3 @@ export class EventBus implements IEventBus {
     return EventBus.nextId++;
   }
 }
-

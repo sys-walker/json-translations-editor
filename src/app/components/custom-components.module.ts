@@ -18,7 +18,7 @@ import { PanelFileComponent } from './segment-panel/panel-file/panel-file.compon
     PanelDownloadsComponent,
     PanelAboutComponent,
     ModalDownloadsListComponent,
-    PanelFileComponent
+    PanelFileComponent,
     /* Other componet*/
   ],
   exports: [
@@ -27,7 +27,7 @@ import { PanelFileComponent } from './segment-panel/panel-file/panel-file.compon
     PanelDownloadsComponent,
     PanelAboutComponent,
     ModalDownloadsListComponent,
-    PanelFileComponent
+    PanelFileComponent,
     /*Other componet*/
   ],
 })
