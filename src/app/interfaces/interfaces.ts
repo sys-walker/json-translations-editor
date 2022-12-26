@@ -20,6 +20,10 @@ export interface IRetTranslationsTableEv extends ITranslatorEvent {
   values: string[][];
   zip: boolean;
 }
+export interface IUploadFile extends ITranslatorEvent {
+  headers:string[];
+  table: string[][];
+}
 
 export class FormatedJSON {
   //Functions to flat or unflat JSON

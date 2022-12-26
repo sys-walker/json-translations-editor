@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FilePicker, PickFilesResult } from '@capawesome/capacitor-file-picker';
-import { FormatedJSON } from 'src/app/interfaces/interfaces';
+import { INPUT_ELEMENT, INPUT_ELEMENT_EMPTY } from 'src/app/home/home.page';
+import { FormatedJSON, IUploadFile } from 'src/app/interfaces/interfaces';
+import { EventBus } from 'src/app/services/EventBus/event-bus';
 
 @Component({
   selector: 'panel-file',
@@ -28,7 +30,7 @@ export class PanelFileComponent implements OnInit {
     const fileArr = pickFiles.files;
     
     //start loading
-    
+
     const blobFileArr = fileArr.map(x => { return {blob:x.blob,fname:x.name}; });
 
     const jsonArray = await Promise.all(
@@ -51,6 +53,7 @@ export class PanelFileComponent implements OnInit {
       return undefined;
     });
     if (jsonArray ===undefined){
+      //alert
       //Exit if something was wrong
       return;
     }
@@ -86,6 +89,46 @@ export class PanelFileComponent implements OnInit {
     
 
     console.log("end function",output);
+
+
+    let outputTableHeaders:string[]=['Key',]
+
+    let outputTable:string[][] =[]
+
+    Object.keys(output).map((k)=>{
+      let valuesArray = [k].concat(output[k]);
+      //first value is translation key
+      //we ned to filter 'filename-locale' that helps us to identify translation language and add it to headers
+      if(valuesArray[0]==='filename-locale'){
+        let localesArray =valuesArray.slice(1);
+        localesArray.map(l=>{outputTableHeaders.push(l);})
+      }else{
+        let inputsArray=valuesArray.map(v=>{
+          if (v ===""){
+            return INPUT_ELEMENT_EMPTY;
+          }else{
+            return INPUT_ELEMENT(v);
+          }
+        })
+        outputTable.push(inputsArray)
+      }
+      
+      
+
+
+      
+    })
+    console.log(outputTableHeaders);
+    console.log(outputTable);
+    let data: IUploadFile = {
+      name:'IUploadFile',
+      headers:outputTableHeaders,
+      table: outputTable
+    };
+    console.debug(`Sent data to EventBus`, data);
+    EventBus.getInstance().dispatch("IUploadFile",data)
+
+    //Save to local storage
   }
 
 

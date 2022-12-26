@@ -1,26 +1,34 @@
 import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { AppComponent } from '../app.component';
-import { IAddLanguageEv, IAddTranslationEv, IGetTranslationsEv, IRemoveLangEv, IRetTranslationsTableEv } from '../interfaces/interfaces';
+import { IAddLanguageEv, IAddTranslationEv, IGetTranslationsEv, IRemoveLangEv, IRetTranslationsTableEv, IUploadFile } from '../interfaces/interfaces';
 import { EventBus, Registry } from '../services/EventBus/event-bus';
 
 const TAG = 'HomePage';
+
+export const INPUT_ELEMENT_EMPTY ='<ion-input style="width: 100%;"></ion-input>';
+
+export function INPUT_ELEMENT(value:string){
+  if(!value){
+    throw new Error('Must provide value.');
+  }
+  return `<ion-input style="width: 100%;" value="${value}"></ion-input>`
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage implements OnInit,OnDestroy{
+
   @ViewChild('someInput') someInput!: ElementRef;
   dark: boolean = false;
   selected: string = 'file';
   theArrayHeaders = ['Key', 'en'];
   theArray = [
-    [
-      '<ion-input style="width: 100%;" value="hello_world"></ion-input>',
-      '<ion-input style="width: 100%;" value="Hello World!"></ion-input>',
-    ], //value="Default value"
-    ['<ion-input style="width: 100%;"></ion-input>', '<ion-input style="width: 100%;"></ion-input>'],
+    [INPUT_ELEMENT("hello_world"), INPUT_ELEMENT("Hello World!")],
+    [INPUT_ELEMENT_EMPTY, INPUT_ELEMENT_EMPTY],
   ];
   numCols = this.theArray[0].length;
   numRows = this.theArray.length;
@@ -32,10 +40,10 @@ export class HomePage implements OnInit,OnDestroy{
   removeLanguageListener:Registry;
   //@ts-ignore
   downloadRequestListener:Registry;
-
+  //@ts-ignore
+  uploadTableListener:Registry;
 
   constructor(private AppMain: AppComponent) {
-
   }
   ngOnInit(): void {
     this.addLanguageListener = EventBus.getInstance().register(
@@ -62,6 +70,12 @@ export class HomePage implements OnInit,OnDestroy{
         this.getCurrentTranslations(message);
       }
     );
+    this.uploadTableListener = EventBus.getInstance().register('IUploadFile',(message: IUploadFile) => {
+      console.log(message);
+      this.theArrayHeaders = message.headers;
+      this.theArray = message.table;
+      
+    })
   
   }
 
@@ -123,7 +137,7 @@ export class HomePage implements OnInit,OnDestroy{
   }
   addTranslation() {
     this.numCols = this.theArrayHeaders.length;
-    let newRow = Array(this.numCols).fill('<ion-input style="width: 100%;"></ion-input>', 0, this.numCols);
+    let newRow = Array(this.numCols).fill(INPUT_ELEMENT_EMPTY, 0, this.numCols);
     this.theArray.push(newRow);
     
   }
@@ -141,15 +155,13 @@ export class HomePage implements OnInit,OnDestroy{
   addLanguage(res: IAddLanguageEv) {
     this.numCols = this.theArray[0].length;
     this.theArrayHeaders.push(res.lang);
-    this.theArray.map((r) => {
-      r.push('<ion-input style="width: 100%;" ></ion-input>');
+    this.theArray.map((r:string[]) => {
+      r.push(INPUT_ELEMENT_EMPTY);
     });
   }
-
   enableDarkMode(attr: any) {
     this.AppMain.darkmode.next(attr);
   }
-
   deleteRow(idx: number) {
     this.theArray.splice(idx, 1);
   }
