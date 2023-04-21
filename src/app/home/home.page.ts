@@ -8,6 +8,7 @@ import {
   IRemoveLangEv,
   IRetCurrentLangs,
   IRetTranslationsTableEv,
+  ISaveQuery,
   IUploadFile,
 } from '../interfaces/interfaces';
 import { EventBus, Registry } from '../services/EventBus/event-bus';
@@ -30,6 +31,8 @@ export function INPUT_ELEMENT(value: string) {
 })
 export class HomePage implements OnInit, OnDestroy {
   @ViewChild('someInput') someInput!: ElementRef;
+  @ViewChild('THeadLang') THeadLang!: ElementRef;
+  @ViewChild('TBodyInputs') TBodyInputs!: ElementRef;
   dark: boolean = false;
   selected: string = 'file';
   theArrayHeaders = ['Key', 'en'];
@@ -39,20 +42,67 @@ export class HomePage implements OnInit, OnDestroy {
   ];
   numCols = this.theArray[0].length;
   numRows = this.theArray.length;
-  //@ts-ignore
-  addLanguageListener: Registry;
-  //@ts-ignore
-  addRowListener: Registry;
-  //@ts-ignore
-  removeLanguageListener: Registry;
-  //@ts-ignore
-  downloadRequestListener: Registry;
-  //@ts-ignore
-  uploadTableListener: Registry;
-  //@ts-ignore
-  requestLanguagesListener: Registry;
+
+  addLanguageListener!: Registry;
+  addRowListener!: Registry;
+  removeLanguageListener!: Registry;
+  downloadRequestListener!: Registry;
+  uploadTableListener!: Registry;
+  requestLanguagesListener!: Registry;
+  saveQueryListener!: Registry;
 
   constructor(private AppMain: AppComponent) {}
+
+  ngOnInit(): void {
+    this.addLanguageListener = EventBus.getInstance().register('IAddLanguageEv', (message: IAddLanguageEv) => {
+      this.addLanguage(<IAddLanguageEv>message);
+    });
+    this.addRowListener = EventBus.getInstance().register('IAddTranslationEv', (message: IAddTranslationEv) => {
+      this.addTranslation();
+    });
+    this.removeLanguageListener = EventBus.getInstance().register('IRemoveLangEv', (message: IRemoveLangEv) => {
+      this.removeLanguage(<IRemoveLangEv>message);
+    });
+    this.downloadRequestListener = EventBus.getInstance().register(
+      'IGetTranslationsEv',
+      (message: IGetTranslationsEv) => {
+        this.getCurrentTranslations(message);
+      }
+    );
+    this.uploadTableListener = EventBus.getInstance().register('IUploadFile', (message: IUploadFile) => {
+      this.theArrayHeaders = message.headers;
+      this.theArray = message.table;
+    });
+    this.requestLanguagesListener = EventBus.getInstance().register('IGetCurrentLangs', (message: IGetCurrentLangs) => {
+      let data: IRetCurrentLangs = {
+        name: 'IRetCurrentLangs',
+        headers: this.theArrayHeaders,
+      };
+      EventBus.getInstance().dispatch('IRetCurrentLangs', data);
+    });
+
+    this.saveQueryListener = EventBus.getInstance().register('ISaveQuery', (message: ISaveQuery) => {
+      console.log(message)
+      //Refactor  to function
+      let head:HTMLTableSectionElement =this.THeadLang.nativeElement
+      let childs =head.children[0].children
+      Array.from(childs).forEach(e=>{
+
+        console.log(e.innerHTML)
+
+      })
+      //TBODY
+      let body:HTMLTableSectionElement =this.TBodyInputs.nativeElement
+      let body_childs =body.children
+      console.log(body_childs);
+      Array.from(body_childs).forEach(e=>{
+        console.log(e);
+      })
+      
+
+    });
+  }
+
 
   ionViewDidEnter() {
     const slider: HTMLElement = document.querySelector('.draggable');
@@ -86,38 +136,9 @@ export class HomePage implements OnInit, OnDestroy {
     slider.addEventListener('mouseleave', stopDragging, false);
   }
 
-  ngOnInit(): void {
-    this.addLanguageListener = EventBus.getInstance().register('IAddLanguageEv', (message: IAddLanguageEv) => {
-      this.addLanguage(<IAddLanguageEv>message);
-    });
-    this.addRowListener = EventBus.getInstance().register('IAddTranslationEv', (message: IAddTranslationEv) => {
-      this.addTranslation();
-    });
-    this.removeLanguageListener = EventBus.getInstance().register('IRemoveLangEv', (message: IRemoveLangEv) => {
-      this.removeLanguage(<IRemoveLangEv>message);
-    });
-    this.downloadRequestListener = EventBus.getInstance().register(
-      'IGetTranslationsEv',
-      (message: IGetTranslationsEv) => {
-        this.getCurrentTranslations(message);
-      }
-    );
-    this.uploadTableListener = EventBus.getInstance().register('IUploadFile', (message: IUploadFile) => {
-      this.theArrayHeaders = message.headers;
-      this.theArray = message.table;
-    });
-    this.requestLanguagesListener = EventBus.getInstance().register('IGetCurrentLangs', (message: IGetCurrentLangs) => {
-      let data: IRetCurrentLangs = {
-        name: 'IRetCurrentLangs',
-        headers: this.theArrayHeaders,
-      };
-      EventBus.getInstance().dispatch('IRetCurrentLangs', data);
-    });
-  }
-
   ngOnDestroy(): void {}
 
-  getCurrentTranslations(message: IGetTranslationsEv) {
+  getCurrentTranslations(message: IGetTranslationsEv) { 
     let tbody: HTMLTableElement = this.someInput.nativeElement;
     let ionInputs = Array.from(tbody.getElementsByTagName('ion-input'));
 

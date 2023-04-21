@@ -28,6 +28,13 @@ export interface IGetCurrentLangs extends ITranslatorEvent {}
 export interface IRetCurrentLangs extends ITranslatorEvent {
   headers: string[];
 }
+export interface ISaveQuery extends ITranslatorEvent { }
+export interface ISaveResponse extends ITranslatorEvent {
+  theArrayHeadersRef: any;
+  theArrayRef: any;
+}
+
+
 export class FormatedJSON {
   //Functions to flat or unflat JSON
   //https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-javascript-objects#:~:text=Flatten%20a%20JSON%20object%3A,))%20%7B%20var%20length%20%3D%20table.

@@ -38,14 +38,14 @@
 
   <div class="ion-padding draggable">
     <table>
-      <thead>
+      <thead #THeadLang>
         <tr>
           <th class="first-column"></th>
           <th class="other-column" *ngFor="let v of theArrayHeaders">{{v}}</th>
         </tr>
       </thead>
 
-      <tbody id="someInput" #someInput>
+      <tbody id="someInput" #someInput #TBodyInputs>
         <tr *ngFor="let _ of theArray; let i = index">
           <td class="first-column">
             <ion-button size="small" color="danger" (click)="deleteRow(i)">X</ion-button>

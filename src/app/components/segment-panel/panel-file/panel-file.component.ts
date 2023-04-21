@@ -177,6 +177,10 @@ export class PanelFileComponent implements OnInit {
 
     //Save to local storage
   }
+
+  async sendSaveQuery(){
+    EventBus.getInstance().dispatch('ISaveQuery', { name: 'ISaveQuery'}); //ISaveQuery
+  }
 }
 
 function jsonConcat(o1, o2, numCols: number) {
