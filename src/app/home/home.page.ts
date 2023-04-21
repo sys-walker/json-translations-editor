@@ -11,6 +11,7 @@ import {
   IUploadFile,
 } from '../interfaces/interfaces';
 import { EventBus, Registry } from '../services/EventBus/event-bus';
+import { experiments } from '../experiments';
 
 const TAG = 'HomePage';
 
@@ -52,7 +53,9 @@ export class HomePage implements OnInit, OnDestroy {
   //@ts-ignore
   requestLanguagesListener: Registry;
 
-  constructor(private AppMain: AppComponent) {}
+  constructor(private AppMain: AppComponent) {
+    experiments();
+  }
 
   ionViewDidEnter() {
     const slider: HTMLElement = document.querySelector('.draggable');
