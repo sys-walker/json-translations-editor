@@ -61,26 +61,34 @@ export class PanelFileComponent implements OnInit {
 
         await this.loading.present();
 
-        await this.uploadMultipleFiles_().catch((err) => {
+        await this.performFileUpload().catch((err) => {
           console.debug(err);
         });
       })
       .catch((err) => {
         console.debug(err);
-      })
-      .finally(async () => {
-        await this.loading.dismiss();
       });
 
     await alert.present();
   }
-  async uploadMultipleFiles_() {
+
+
+  async performFileUpload() {
     const pickFiles = await FilePicker.pickFiles({
       types: ['application/json'],
       multiple: true,
-    }).catch(() => {
+    }).catch((err) => {
+      console.debug("Cancelled uploading files")
       return undefined;
+    }).finally(async()=>{
+      if(this.loading){
+        await this.loading.dismiss()
+      }
     });
+
+
+
+
     if (pickFiles === undefined) {
       //we did not pick files
       return;
