@@ -2,10 +2,10 @@
   <div class="panel-option" style="width: 100px; white-space: normal !important">
     <p class="option-title">Upload</p>
     <div class="slot-vertical">
-      <ion-button fill="clear" *ngIf="dark" style="height: 70px" (click)="uploadMultipleFiles()">
+      <ion-button fill="clear" *ngIf="dark" style="height: 70px" (click)="openUploadPrompt()">
         <ion-icon style="width: 50px; height: 50px" slot="start" src="assets/icon/file-upload-icon-dark.svg"></ion-icon>
       </ion-button>
-      <ion-button fill="clear" *ngIf="!dark" style="height: 70px" (click)="uploadMultipleFiles()">
+      <ion-button fill="clear" *ngIf="!dark" style="height: 70px" (click)="openUploadPrompt()">
         <ion-icon style="width: 50px; height: 50px" slot="start" src="assets/icon/file-upload-icon.svg"></ion-icon>
       </ion-button>
     </div>

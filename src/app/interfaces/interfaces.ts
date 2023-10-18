@@ -198,6 +198,62 @@ export class FormatedJSON {
       
       return newJson  
     }
+
+    static mergeTranslationArray(jsonArray:[]){
+      let result={};
+      jsonArray.forEach(element => {
+
+        result = FormatedJSON.mergeJSON(element,result);
+      });
+      console.log(result);
+      
+
+      return result;
+    }
+    static mergeJSON(jsonObj1, jsonObj2:any) {
+      if(Object.keys(jsonObj2).length===0){
+        return jsonObj1
+      }
+      const mergedJSON = {};
+      Object.keys(jsonObj1).forEach((property)=>{
+          if (Array.isArray(jsonObj1[property])) {
+              mergedJSON[property] = jsonObj1[property];
+          } else {
+              mergedJSON[property] = [jsonObj1[property]];
+              ;
+          }
+      }
+      );
+  
+      let set = new Set(Object.keys(jsonObj1).concat(Object.keys(jsonObj2)));
+      let arr = Array.from(set);
+  
+      arr.forEach((property)=>{
+          if (!mergedJSON[property]) {
+              mergedJSON[property] = [""]
+          }
+  
+          if (!mergedJSON.hasOwnProperty(property)) {
+              mergedJSON[property] = [jsonObj2[property]];
+          } else {
+              if (Array.isArray(mergedJSON[property])) {
+  
+                  if (jsonObj2[property] === undefined) {
+                      jsonObj2[property] = ""
+                  }
+  
+                  mergedJSON[property].push(jsonObj2[property]);
+  
+              } else {
+                  mergedJSON[property] = [mergedJSON[property], jsonObj2[property]];
+              }
+          }
+      }
+      );
+  
+      return mergedJSON;
+  }
+  
 }
 //@ts-ignore
 function union(setA, setB) {

@@ -1,5 +1,5 @@
-export function experiments(){
-    /*
+export function experiments() {
+  /*
         Class TranslationJSON
         {
             "en":{
@@ -31,7 +31,5 @@ export function experiments(){
         
 
     */
-    console.log("Experiment function")
-
-
+  console.log('Experiment function');
 }
