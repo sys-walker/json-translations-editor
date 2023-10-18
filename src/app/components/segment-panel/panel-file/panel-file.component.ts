@@ -145,13 +145,13 @@ async function transform2TranslationJSON(fileArr: any) {
     return undefined;
   });
 }
-function createTranslationTableHTML(output: any) {
+function createTranslationTableHTML(mergedTranslations: any) {
   let outputTableHeaders: string[] = ['Key'];
 
   let outputTable: string[][] = [];
 
-  Object.keys(output).map((k) => {
-    let valuesArray = [k].concat(output[k]);
+  Object.keys(mergedTranslations).map((k) => {
+    let valuesArray = [k].concat(mergedTranslations[k]);
     //first value is translation key
     //we ned to filter 'filename-locale' that helps us to identify translation language and add it to headers
     if (valuesArray[0] === 'filename-locale') {
