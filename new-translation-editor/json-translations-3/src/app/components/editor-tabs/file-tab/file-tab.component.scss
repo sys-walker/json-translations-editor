@@ -1,6 +1,7 @@
 .container {
   height: var(--global-height, 100px);
   padding: 1px;
+  display: flex;
 }
 // mat-card {
 //   border: 1px solid black;

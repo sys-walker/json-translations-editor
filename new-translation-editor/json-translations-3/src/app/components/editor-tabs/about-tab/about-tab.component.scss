@@ -1,5 +1,28 @@
 .container {
   height: var(--global-height, 100px);
-  border: 1px solid red;
-  padding: 10px;
+  padding: 1px;
+  display: flex;
+}
+// mat-card {
+//   border: 1px solid black;
+// }
+mat-card.buttons {
+  display: flex; /* Enable Flexbox on the card */
+  flex-grow: 1; /* Allow the card to grow and fill the available space */
+  flex-direction: row;
+}
+.button-section {
+  //border-right: 1px solid rgb(200, 198, 196);
+  //width: 86px;
+  padding: 0px 5px 0px 0px;
+  margin: 4px 4px 4px 4px; //top,right,bottom,left
+}
+h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+p {
+  margin: 0;
+  font-size: 12px;
 }
