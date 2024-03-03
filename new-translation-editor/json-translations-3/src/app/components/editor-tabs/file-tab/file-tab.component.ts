@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './file-tab.component.scss'
 })
 export class FileTabComponent {
+  uploadFile(){
+    console.log("upload file clicked");
+    
+  }
 
 }
