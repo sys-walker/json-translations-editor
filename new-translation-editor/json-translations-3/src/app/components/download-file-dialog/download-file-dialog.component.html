@@ -1,0 +1,20 @@
+<h1 style="width: 500px" mat-dialog-title>Download your translations</h1>
+<mat-dialog-content class="mat-typography">
+  <mat-list style="width: 90%">
+    @for (f of folders; track f) {
+      <mat-list-item>
+        <mat-icon matListItemIcon svgIcon="json-file"></mat-icon>
+        <div matListItemTitle>{{ f.name }}</div>
+      </mat-list-item>
+
+    
+    
+      <mat-divider></mat-divider>
+
+    }
+  </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>

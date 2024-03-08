@@ -7,6 +7,7 @@ import { FileTabComponent } from './editor-tabs/file-tab/file-tab.component';
 import { LanguageTabComponent } from './editor-tabs/language-tab/language-tab.component';
 import { DownloadTabComponent } from './editor-tabs/download-tab/download-tab.component';
 import { AboutTabComponent } from './editor-tabs/about-tab/about-tab.component';
+import { DownloadFileDialogComponent } from './download-file-dialog/download-file-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AboutTabComponent } from './editor-tabs/about-tab/about-tab.component';
     LanguageTabComponent,
     DownloadTabComponent,
     AboutTabComponent,
+    DownloadFileDialogComponent, //Not exported, it will be used only inside 
   ],
   imports: [CommonModule, AngularMaterialComponentsModule],
   exports: [

@@ -6,21 +6,18 @@ import { AppComponent } from './app.component';
 import { CustomComponentsModule } from './components/custom-components.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AngularMaterialComponentsModule } from './angular-material-components.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule, //registry icons
     AppRoutingModule,
     CustomComponentsModule,
-    AngularMaterialComponentsModule
+    AngularMaterialComponentsModule,
   ],
-  providers: [
-    provideClientHydration(),
-    provideAnimationsAsync('noop')
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideClientHydration(), provideAnimationsAsync('noop')],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

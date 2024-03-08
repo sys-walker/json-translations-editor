@@ -1,2 +1,45 @@
-<div class="container">download-tab works!</div>
-
+<div class="container">
+  <mat-card class="buttons">
+    <div class="button-section">
+      <button class="image-button" mat-button [matMenuTriggerFor]="menuRef">
+        <div>
+          <img src="/assets/icon/download-tab/document-download-icon.svg" />
+          <p>Download</p>
+        </div>
+      </button>
+      <mat-menu #menuRef="matMenu" class="menu-dropdown">
+        <button mat-menu-item (click)="donwloadFile()" class="menu-dropdown-item">
+          <mat-icon
+            style="--mat-menu-item-icon-size: 14px"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            svgIcon="json-file"
+          ></mat-icon>
+          <p style="font-size: 14px; margin: 0">Download file</p>
+        </button>
+        <button mat-menu-item (click)="donwloadAllFiles()" class="menu-dropdown-item">
+          <mat-icon
+            style="--mat-menu-item-icon-size: 14px"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            svgIcon="download-zip"
+          ></mat-icon>
+          <p style="font-size: 14px; margin: 0">Download all files</p>
+        </button>
+      </mat-menu>
+    </div>
+    <div class="button-section">
+      <label>Pick your favorite season</label>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        style="display: flex; flex-direction: column; margin: 0px; align-items: flex-start"
+        [(ngModel)]="favoriteSeason"
+      >
+        @for (season of seasons; track season) {
+          <mat-radio-button style="margin: 5px" [value]="season">{{ season }}</mat-radio-button>
+        }
+      </mat-radio-group>
+    </div>
+    <div>Your favorite season is: {{ favoriteSeason }}</div>
+  </mat-card>
+</div>

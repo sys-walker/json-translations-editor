@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -12,10 +12,19 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCommonModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
+import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
   exports: [
+    FormsModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatMenuModule,
     MatListModule,
     MatDividerModule,
     MatCardModule,
@@ -29,6 +38,7 @@ import { MatListModule } from '@angular/material/list';
     MatInputModule,
     MatDatepickerModule,
     MatTabsModule,
+    MatCommonModule,
   ],
   providers: [provideNativeDateAdapter()],
 })
