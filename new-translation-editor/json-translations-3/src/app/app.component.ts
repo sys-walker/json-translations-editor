@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import path from 'path';
+import { ProgramService } from './EditorProgram/program.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor(
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
   ) {
     this.registerIcons([
       '/download-tab/document-download-icon.svg',
@@ -29,8 +29,6 @@ export class AppComponent {
       iconName = iconName!.replace('-icon', '');
       iconName = iconName!.replace('.svg', '');
       let path = `/assets/icon${element}`;
-      console.log(iconName);
-
       this.matIconRegistry.addSvgIcon(iconName, this.domSanitizer.bypassSecurityTrustResourceUrl(path));
     });
   }
