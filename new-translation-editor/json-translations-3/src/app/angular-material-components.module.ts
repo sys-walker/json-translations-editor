@@ -16,11 +16,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCommonModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTableModule } from '@angular/material/table';
+
 @NgModule({
   declarations: [],
   imports: [CommonModule],
   exports: [
+    MatTableModule,
     FormsModule,
     MatRadioModule,
     MatDialogModule,
@@ -33,12 +37,14 @@ import {FormsModule} from '@angular/forms';
     MatButtonModule,
     MatExpansionModule,
     MatIconModule,
-    MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
     MatTabsModule,
     MatCommonModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatButtonToggleModule
   ],
   providers: [provideNativeDateAdapter()],
 })

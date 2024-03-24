@@ -8,6 +8,7 @@ import { LanguageTabComponent } from './editor-tabs/language-tab/language-tab.co
 import { DownloadTabComponent } from './editor-tabs/download-tab/download-tab.component';
 import { AboutTabComponent } from './editor-tabs/about-tab/about-tab.component';
 import { DownloadFileDialogComponent } from './download-file-dialog/download-file-dialog.component';
+import { TranslateTableEditorComponent } from './translate-table-editor/translate-table-editor.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DownloadFileDialogComponent } from './download-file-dialog/download-fil
     LanguageTabComponent,
     DownloadTabComponent,
     AboutTabComponent,
-    DownloadFileDialogComponent, //Not exported, it will be used only inside 
+    DownloadFileDialogComponent,
+    TranslateTableEditorComponent, //Not exported, it will be used only inside 
   ],
   imports: [CommonModule, AngularMaterialComponentsModule],
   exports: [
@@ -27,6 +29,7 @@ import { DownloadFileDialogComponent } from './download-file-dialog/download-fil
     LanguageTabComponent,
     DownloadTabComponent,
     AboutTabComponent,
+    TranslateTableEditorComponent
   ],
 })
 export class CustomComponentsModule {}

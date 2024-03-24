@@ -50,6 +50,7 @@ export class JSONUploaderService {
       );
     // .pipe(
     //   switchMap((myArray) => {
+    // pending merge
     //     return of(myArray);
     //   })
     // );
