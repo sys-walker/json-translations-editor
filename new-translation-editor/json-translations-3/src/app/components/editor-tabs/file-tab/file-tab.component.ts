@@ -8,7 +8,11 @@ import { JSONUploaderService } from '../../../EditorProgram/json-uploader.servic
   styleUrl: './file-tab.component.scss',
 })
 export class FileTabComponent {
-  constructor(private uploader: JSONUploaderService) {}
+  constructor(private uploader: JSONUploaderService) {
+    this.uploader.mock_uploadFiles().subscribe((data) => {
+      console.log('Uploaded: ', data);
+    });
+  }
 
   async uploadFile() {
     this.uploader.uploadFiles().subscribe((data) => {

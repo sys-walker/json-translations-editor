@@ -21,7 +21,7 @@
             </td>
           </ng-container>
         }
-        @case ('name') {
+        @case ('sh') {
           <ng-container matColumnDef="{{ column }}" sticky>
             <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
             <td mat-cell *matCellDef="let element">{{ element[column] }}</td>

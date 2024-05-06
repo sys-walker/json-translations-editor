@@ -1,40 +1,22 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 
-export interface TableElement {
-  [locale: string]: any;
-}
-export interface TableElementKey {
-  [key: string]: TableElement;
-}
-
-const ELEMENT_DATA_KEY: TableElementKey[] = [
-  { Hydrogen: { ca: 1, es: 'Hydrogen', jp: 1.0079, ko: 'H' } },
-  { Helium: { ca: 2, es: 'Helium', jp: 4.0026, ko: 'He' } },
-  { Lithium: { ca: 3, es: 'Lithium', jp: 6.941, ko: 'Li' } },
-  { Beryllium: { ca: 4, es: 'Beryllium', jp: 9.0122, ko: 'Be' } },
-  { Boron: { ca: 5, es: 'Boron', jp: 10.811, ko: 'B' } },
-];
-
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  TRANSLATION_KEY: string;
   [key: string]: any;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+  { es: 1, TRANSLATION_KEY: 'Hydrogen', en: 1.0079, sh: 'H' },
+  { es: 2, TRANSLATION_KEY: 'Helium', en: 4.0026, sh: 'He' },
+  { es: 3, TRANSLATION_KEY: 'Lithium', en: 6.941, sh: 'Li' },
+  { es: 4, TRANSLATION_KEY: 'Beryllium', en: 9.0122, sh: 'Be' },
+  { es: 5, TRANSLATION_KEY: 'Boron', en: 10.811, sh: 'B' },
+  { es: 6, TRANSLATION_KEY: 'Carbon', en: 12.0107, sh: 'C' },
+  { es: 7, TRANSLATION_KEY: 'Nitrogen', en: 14.0067, sh: 'N' },
+  { es: 8, TRANSLATION_KEY: 'Oxygen', en: 15.9994, sh: 'O' },
+  { es: 9, TRANSLATION_KEY: 'Fluorine', en: 18.9984, sh: 'F' },
+  { es: 10, TRANSLATION_KEY: 'Neon', en: 20.1797, sh: 'Ne' },
 ];
 
 @Component({
@@ -61,12 +43,8 @@ export class TranslateTableEditorComponent {
   }
 
   addColumn() {
-    let newColumnName = this.randomString(5);
-    // this.dataSource.forEach((el) => {
-    //   console.log(el[newColumnName]);
-    //   //el[newColumnName] = 'Lorem Ipsum';
-    // });
-    this.displayedColumns.splice(this.displayedColumns.length - 1, 0, newColumnName);
+    let newColumnTRANSLATION_KEY = this.randomString(5);  
+    this.displayedColumns.splice(this.displayedColumns.length - 1, 0, newColumnTRANSLATION_KEY);
   }
 
   removeColumn() {
@@ -96,6 +74,6 @@ export class TranslateTableEditorComponent {
     return result;
   }
   getPeriodicElementDisplayedColumns(arr: PeriodicElement[]) {
-    return ['name', 'symbol', 'position', 'weight', 'star'];
+    return ['TRANSLATION_KEY', 'sh', 'es', 'en', 'star'];
   }
 }
