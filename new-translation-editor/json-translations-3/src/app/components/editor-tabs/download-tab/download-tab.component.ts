@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DownloadFileDialogComponent } from '../../download-file-dialog/download-file-dialog.component';
+import { DownloadFileDialogComponent } from '../../dialogs/download-file-dialog/download-file-dialog.component';
 
 @Component({
   selector: 'editor-download-tab',

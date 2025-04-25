@@ -19,11 +19,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
   exports: [
+    MatProgressBarModule,
     MatTableModule,
     FormsModule,
     MatRadioModule,

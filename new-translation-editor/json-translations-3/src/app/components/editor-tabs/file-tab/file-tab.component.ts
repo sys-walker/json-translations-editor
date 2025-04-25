@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { FilePicker } from '@capawesome/capacitor-file-picker';
-import { JSONUploaderService, LANGUAGEJSON, TRANSLATION_KEY } from '../../../EditorProgram/json-uploader.service';
+import { JSONUploaderService, LANGUAGEJSON, TRANSLATION_KEY } from '../../../services/json-uploader.service';
 import { mergedKeys } from '../../../util/json-functions';
-import { ITranslationRow, IntermediaryFileTranslation, TranslationLiteral } from '../../../EditorProgram/interfaces';
+import { ITranslationRow, IntermediaryFileTranslation, TranslationLiteral } from '../../../interfaces/interfaces';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { LoadingJSONComponent } from '../../dialogs/loading-translation-json/loading-json.component';
+import { FilesUoplaodResult } from '../../../interfaces/json-upload';
 
 @Component({
   selector: 'editor-file-tab',
@@ -10,37 +13,29 @@ import { ITranslationRow, IntermediaryFileTranslation, TranslationLiteral } from
   styleUrl: './file-tab.component.scss',
 })
 export class FileTabComponent {
-  constructor(private uploader: JSONUploaderService) {}
+  constructor(
+    private uploader: JSONUploaderService,
+    public dialog: MatDialog
+  ) {}
 
   async uploadFile() {
-    this.uploader.uploadFiles().subscribe((data) => {
-      console.log('Uploaded: ', data);
+    const dialogRef = this.dialog.open(LoadingJSONComponent);
+    //@ts-ignore
+    dialogRef.componentInstance.title = 'Loading JSON files...';
+    //@ts-ignore
+    dialogRef.componentInstance.message = 'Please wait while we load the JSON files.';
+    this.uploader.uploadFiles().subscribe((data: FilesUoplaodResult) => {
+      if (data.status === 'CANCELLED') {
+        dialogRef.close();
+        return;
+      } else {
+        dialogRef.close();
+      
 
+      
 
-      let intermediaryObjFile: IntermediaryFileTranslation={};
-      data.forEach((d:TranslationLiteral) => {
-        intermediaryObjFile[d[LANGUAGEJSON]] = d;
-        delete d[LANGUAGEJSON];
-      });
-
-
-
-
-
-      let mergedKeys_:string[] = mergedKeys(data);
-
-
-      let outputArray: ITranslationRow[] = [];
-      for (let k of mergedKeys_) {
-        let output: any = {};
-        output[TRANSLATION_KEY] = k;
-        for (let lang of Object.keys(intermediaryObjFile)) {
-          output[lang] = intermediaryObjFile[lang][k] || '';
-        }
-        outputArray.push(output);
+        console.log(data.files);
       }
-
-      console.log(outputArray);
     });
   }
 }

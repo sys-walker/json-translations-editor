@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ProgramService } from './EditorProgram/program.service';
 
 @Component({
   selector: 'app-root',
