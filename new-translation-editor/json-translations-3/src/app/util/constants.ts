@@ -1,0 +1,2 @@
+export const TRANSLATION_KEY = 'TRANSLATION_KEY';
+export const REMOVE_ICON = 'REMOVE_ICON';

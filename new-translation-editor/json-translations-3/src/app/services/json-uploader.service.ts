@@ -5,6 +5,7 @@ import { FormatedJSON } from '../util/json-formatter';
 import { mergedKeys } from '../util/json-functions';
 import { PickFilesStatus } from '../interfaces/json-upload';
 import { IntermediaryFileTranslation, ITranslationRow, TranslationLiteral } from './interfaces';
+import { TRANSLATION_KEY } from '../util/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -75,4 +76,4 @@ export class JSONUploaderService {
   }
 }
 export const LANGUAGEJSON = 'languageJsonTranslation';
-export const TRANSLATION_KEY = 'TRANSLATION_KEY';
+

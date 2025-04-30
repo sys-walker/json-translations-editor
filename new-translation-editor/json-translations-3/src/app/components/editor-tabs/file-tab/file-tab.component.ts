@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { FilePicker } from '@capawesome/capacitor-file-picker';
-import { JSONUploaderService, LANGUAGEJSON, TRANSLATION_KEY } from '../../../services/json-uploader.service';
-import { mergedKeys } from '../../../util/json-functions';
-import { ITranslationRow, IntermediaryFileTranslation, TranslationLiteral } from '../../../interfaces/interfaces';
+import { JSONUploaderService, LANGUAGEJSON } from '../../../services/json-uploader.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { LoadingJSONComponent } from '../../dialogs/loading-translation-json/loading-json.component';
 import { FilesUoplaodResult } from '../../../interfaces/json-upload';
+import { EventBus } from '../../../util/event-bus';
 
 @Component({
   selector: 'editor-file-tab',
@@ -19,22 +17,15 @@ export class FileTabComponent {
   ) {}
 
   async uploadFile() {
-    const dialogRef = this.dialog.open(LoadingJSONComponent);
-    //@ts-ignore
-    dialogRef.componentInstance.title = 'Loading JSON files...';
-    //@ts-ignore
-    dialogRef.componentInstance.message = 'Please wait while we load the JSON files.';
     this.uploader.uploadFiles().subscribe((data: FilesUoplaodResult) => {
       if (data.status === 'CANCELLED') {
-        dialogRef.close();
+        // dialogRef.close();
         return;
       } else {
-        dialogRef.close();
-      
+        console.log('sucess upload: ', data);
 
-      
-
-        console.log(data.files);
+        EventBus.getInstance().dispatch('FilesUpload', data.files);
+        // dialogRef.close();
       }
     });
   }
