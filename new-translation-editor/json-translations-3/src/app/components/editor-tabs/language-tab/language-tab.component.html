@@ -1,1 +1,19 @@
-<div class="container">language-tab works!</div>
+<!-- <div class="container" (click)="requestLanguages()">language-tab works!</div> -->
+<div class="container">
+  <mat-card class="buttons">
+    <div class="button-section">
+      <button class="image-button" mat-button (click)="requestLanguages()">
+        <div>
+          <img src="/assets/icon/file-tab/file-upload-icon.svg" />
+          <p>Upload file</p>
+        </div>
+      </button>
+      <div>
+        <input type="text" placeholder="Search" class="search-input" #InputLang />
+        <button class="search-button" mat-button (click)="addLanguage(InputLang.value)">
+          <img src="/assets/icon/file-tab/search-icon.svg" />
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>

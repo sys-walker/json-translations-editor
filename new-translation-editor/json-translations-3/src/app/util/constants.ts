@@ -1,2 +1,10 @@
 export const TRANSLATION_KEY = 'TRANSLATION_KEY';
 export const REMOVE_ICON = 'REMOVE_ICON';
+
+export const LANGUAGE_OPERATION = 'LANGUAGE_OPERATION';
+export const LANGUAGE_OPERATION_RESULT = 'LANGUAGE_OPERATION_RESULT';
+
+export interface ILanguageOperation {
+  type: 'ADD_LANGUAGE' | 'REMOVE_LANGUAGE' | 'REQUEST_LANGUAGES';
+  data: any;
+}

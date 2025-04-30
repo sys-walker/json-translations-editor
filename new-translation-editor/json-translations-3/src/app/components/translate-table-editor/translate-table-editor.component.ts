@@ -1,7 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { EventBus, Registry } from '../../util/event-bus';
-import { REMOVE_ICON, TRANSLATION_KEY } from '../../util/constants';
+import {
+  ILanguageOperation,
+  LANGUAGE_OPERATION,
+  LANGUAGE_OPERATION_RESULT,
+  REMOVE_ICON,
+  TRANSLATION_KEY,
+} from '../../util/constants';
 import { ITranslationRow } from '../../interfaces/interfaces';
 
 const FIRST = [
@@ -30,6 +36,7 @@ const FIRST = [
 export class TranslateTableEditorComponent {
   @ViewChild(MatTable) table!: MatTable<ITranslationRow>;
   uploadListener!: Registry;
+  languageOpsListener!: Registry;
   displayedColumns = this.getDisplayedColumns(FIRST);
   dataSource = FIRST;
 
@@ -41,6 +48,22 @@ export class TranslateTableEditorComponent {
       let language = this.displayedColumns.filter((e) => e !== TRANSLATION_KEY && e !== REMOVE_ICON);
       console.log('languages: ', language);
       this.table.renderRows();
+    });
+
+    this.languageOpsListener = EventBus.getInstance().register(LANGUAGE_OPERATION, (op: ILanguageOperation) => {
+      switch (op.type) {
+        case 'REQUEST_LANGUAGES':
+          EventBus.getInstance().dispatch(LANGUAGE_OPERATION_RESULT, {
+            type: 'REQUEST_LANGUAGES',
+            data: this.displayedColumns.filter((e) => e !== TRANSLATION_KEY && e !== REMOVE_ICON),
+          });
+          break;
+
+        default:
+          console.log('Unknown language operation type:', op.type);
+
+          break;
+      }
     });
   }
   ngOnDestroy() {
